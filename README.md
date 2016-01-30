@@ -12,7 +12,7 @@ pip install eve
 # Testing mongo and eve
 First of all launch a mongo instance:
 ```shell
-mongo --host localhost:27017
+mongod --shardsvr --dbpath mongo --port 27017
 ```
 
 Then run the get_data script to populate the db. Data are fetch from the internet:
