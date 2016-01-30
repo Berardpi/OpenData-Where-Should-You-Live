@@ -5,10 +5,19 @@ MONGO_DBNAME = 'wsil'
 PAGINATION = False
 TRANSPARENT_SCHEMA_RULES = True
 DOMAIN = {
-  'cyclelane': {
+  "cyclelane": {
     "schema": {
       "type": {"type": "string"},
-      "features": {"type": "geometrycollection"},
+      "id": {"type": "integer"},
+      "properties": {"type": "list"},
+      "geometry": {"type": "linestring"},
     }
   },
+  "neighborhood": {
+    "schema": {
+      "type": {"type": "string"},
+      "properties": {"type": "list"},
+      "geometry": {"type": "polygon"},
+    }
+  }
 }
