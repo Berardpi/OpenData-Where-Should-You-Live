@@ -2,14 +2,27 @@
 
 This is a small application using a mongodb database, sets of open data and 3D.js to help the user find the Grenoble neighborhood in which he'd like to live.
 
-# Setup
+## Client 
+
+### Build & development
+
+Run `grunt` for building and `grunt serve` for preview.
+
+### Testing
+
+Running `grunt test` will run the unit tests with karma.
+
+
+## Server
+
+### Setup
 You'll need mongo to be able to run the application. We use python-eve to provide a REST API on top of the database.
 To install eve run:
 ```shell
 pip install eve
 ```
 
-# Testing mongo and eve
+### Testing mongo and eve
 First of all launch a mongo instance:
 ```shell
 mongod --shardsvr --dbpath mongo --port 27017
