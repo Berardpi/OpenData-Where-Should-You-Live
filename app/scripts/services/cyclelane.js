@@ -18,5 +18,15 @@ angular.module('Cyclelane', [])
       });
     };
 
+    service.lengthInPolygon = function(polygon) {
+      return service.loadInPolygon(polygon).then(function(success) {
+        var length = 0;
+        _.forEach(success._items, function(lane) {
+          length += lane.properties.longueur_section_m;
+        });
+        return length;
+      });
+    }
+
     return service;
   });
