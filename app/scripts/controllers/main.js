@@ -15,23 +15,7 @@ angular.module('openDataApp')
       'Karma'
     ];
 
-    angular.extend($scope, {
-      defaults: {
-          tileLayer: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', //'http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png',
-          maxZoom: 14,
-          path: {
-              weight: 10,
-              color: '#800000',
-              opacity: 1
-          }
-      },
-      center: {
-          lat: 45.180,
-          lng: 5.728,
-          zoom: 12
-      }
-    });
-
+    $scope.neighborhoods = {};
     $scope.salesData=[
         {hour: 1,sales: 54},
         {hour: 2,sales: 66},
@@ -46,9 +30,46 @@ angular.module('openDataApp')
     ];
 
     NeighborhoodSvc.load().then(function(success) {
-      $scope.neighborhoods = success._items;
-      CyclelaneSvc.loadInPolygon($scope.neighborhoods[0].geometry).then(function(success) {
+      $scope.neighborhoods.data = success._items;
+      $scope.neighborhoods.style = getStyle;
+      CyclelaneSvc.loadInPolygon($scope.neighborhoods.data[0].geometry).then(function(success) {
         $scope.line = success._items;
       });
     });
+
+      angular.extend($scope, {
+          defaults: {
+              /* tileLayer: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', //'http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png',
+               maxZoom: 14,*/
+              scrollWheelZoom: false
+          },
+          center: {
+              lat: 45.180,
+              lng: 5.728,
+              zoom: 12
+          }
+      });
+
+      var getStyle = function(feature){
+          return {
+              fillColor: getColor(feature.properties.SDEC_LIBEL),
+              weight: 2,
+              opacity: 1,
+              color: 'white',
+              dashArray: '3',
+              fillOpacity: 0.3
+          };
+      };
+      var getColor = function(name) {
+          var rand = Math.floor((Math.random()*10));
+          if(name == "Centre Gare") {
+              return "yellow";
+          } else if(rand%3==0){
+              return "red"
+          } else if (rand%3 ==1){
+              return "green";
+          } else {
+              return "blue";
+          }
+      }
   });
