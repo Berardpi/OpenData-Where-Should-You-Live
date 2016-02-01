@@ -18,7 +18,6 @@ angular
     'ngTouch',
     'nemLogging',
     'ui-leaflet',
-    'd3',
     'Bubble',
   ])
   .config(function ($routeProvider) {
