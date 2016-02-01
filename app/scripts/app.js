@@ -33,6 +33,11 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
+      .when('/bubble', {
+        templateUrl: 'views/bubble.html',
+        controller: 'BubbleCtrl',
+        controllerAs: 'bubble'
+      })
       .otherwise({
         redirectTo: '/'
       });
