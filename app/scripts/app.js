@@ -20,7 +20,10 @@ angular
     'ui-leaflet',
     'Bubble',
     'Neighborhood',
-    'Cyclelane'
+    'Cyclelane',
+    'Citelib',
+    'Gsm',
+    'Stop'
   ])
   .config(function ($routeProvider) {
     $routeProvider
