@@ -19,5 +19,28 @@ DOMAIN = {
       "properties": {"type": "list"},
       "geometry": {"type": "polygon"},
     }
+  },
+  "citelib": {
+    "schema": {
+      "type": {"type": "string"},
+      "features": {"type": "geometrycollection"},
+      "properties": {"type": "list"},
+      "geometry": {"type": "polygon"},
+    }
+  },
+  "stop": {
+    "schema": {
+      "type": {"type": "string"},
+      "features": {"type": "geometrycollection"},
+      "properties": {"type": "list"},
+      "geometry": {"type": "polygon"},
+    }
+  },
+  "gsm": {
+    "schema": {
+      "type": {"type": "string"},
+      "properties": {"type": "list"},
+      "geometry": {"type": "polygon"},
+    }
   }
 }
