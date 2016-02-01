@@ -19,3 +19,20 @@ curl http://metromobilite.fr/data/Carto/Statique/velo.geojson > cycle_lane.geojs
 process_file "cycle_lane.geojson"
 mongoimport --jsonArray --host localhost:27017 --db wsil --collection cyclelane --drop --file cycle_lane.geojson
 rm cycle_lane.geojson
+
+
+# Citelib
+curl http://data.metromobilite.fr/api/bbox/json?types=citelib > citelib.geojson
+mongoimport --jsonArray --host localhost:27017 --db wsil --collection citelib --drop --file citelib.geojson
+rm citelib.geojson
+
+# Stop
+curl http://www.metromobilite.fr/data/Carto/Statique/ArretsLight.geojson > stop.geojson
+mongoimport --jsonArray --host localhost:27017 --db wsil --collection stop --drop --file stop.geojson
+rm stop.geojson
+
+# GSM
+curl http://sig.grenoble.fr/opendata/Antenne_GSM/json/DSPE_ANT_GSM_EPSG4326.json > gsm.geojson
+process_file "gsm.geojson"
+mongoimport --jsonArray --host localhost:27017 --db wsil --collection gsm --drop --file gsm.geojson
+rm gsm.geojson
