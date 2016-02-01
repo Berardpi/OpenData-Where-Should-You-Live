@@ -7,14 +7,14 @@ angular.module('Gsm', [])
 
     service.load = function() {
       return $http.get(service.route).then(function(success) {
-        return success.data;
+        return success.data._items;
       });
     };
 
     service.loadInPolygon = function(polygon) {
       var params = 'where={\"geometry\": {\"$geoWithin\": {\"$geometry\": ' + JSON.stringify(polygon) + '}}}';
       return $http.get(service.route + '?' + params).then(function(success) {
-        return success.data;
+        return success.data._items;
       });
     };
 

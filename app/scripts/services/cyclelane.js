@@ -7,21 +7,21 @@ angular.module('Cyclelane', [])
 
     service.load = function() {
       return $http.get(service.route).then(function(success) {
-        return success.data;
+        return success.data._items;
       });
     };
 
     service.loadInPolygon = function(polygon) {
       var params = 'where={\"geometry\": {\"$geoWithin\": {\"$geometry\": ' + JSON.stringify(polygon) + '}}}';
       return $http.get(service.route + '?' + params).then(function(success) {
-        return success.data;
+        return success.data._items;
       });
     };
 
     service.lengthInPolygon = function(polygon) {
       return service.loadInPolygon(polygon).then(function(success) {
         var length = 0;
-        _.forEach(success._items, function(lane) {
+        _.forEach(success, function(lane) {
           length += lane.properties.longueur_section_m;
         });
         return length;
