@@ -29,13 +29,17 @@ angular.module('Cyclelane', ['Neighborhood'])
     }
 
     service.lengthPerNeighborhood = function(){
-        var neighborhoods = NeighborhoodSvc.load();
-        var lengths = [];
-
-        _.forEach(neighborhoods, function(n) {
-          lengths.push({'name': n.properties.SDEC_LIEBEL, 'length': lengthInPolygon(n.geometry)});
+        return NeighborhoodSvc.load().then(function(success) {
+            var lengths = [];
+            _.forEach(success, function(n) {
+                var obj = {'name': n.properties.SDEC_LIBEL, 'geometry':n.geometry};
+                service.lengthInPolygon(n.geometry).then(function(len){
+                    obj.lenght = len;
+                    lengths.push(obj);
+                }); 
+            });
+            return lengths
         });
-        return lengths
     }
 
     return service;

@@ -8,7 +8,8 @@ angular.module('Bubble',['Cyclelane'])
       }
     };
 
-    CyclelaneSvc.lengthPerNeighborhood();
+    var test = CyclelaneSvc.lengthPerNeighborhood();
+      console.log(test);
 
   });
 

@@ -32,7 +32,7 @@ angular.module('Bubble')
                        .data(nodes);
 
           vis.enter().append('circle')
-            .attr('transform', function(d) { console.log(d); return 'translate(' + d.x + ',' + d.y + ')'; })
+            .attr('transform', function(d) { return 'translate(' + d.x + ',' + d.y + ')'; })
             .attr('r', function(d) { return d.r; })
             .attr('class', function(d) { return d.className; });
 
