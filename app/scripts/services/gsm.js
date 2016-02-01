@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('Cyclelane', [])
-  .factory('CyclelaneSvc', function ($http) {
+angular.module('Gsm', [])
+  .factory('GsmSvc', function ($http) {
     var service = {};
-    service.route = "http://127.0.0.1:5000/cyclelane";
+    service.route = "http://127.0.0.1:5000/gsm";
 
     service.load = function() {
       return $http.get(service.route).then(function(success) {
@@ -17,16 +17,6 @@ angular.module('Cyclelane', [])
         return success.data._items;
       });
     };
-
-    service.lengthInPolygon = function(polygon) {
-      return service.loadInPolygon(polygon).then(function(success) {
-        var length = 0;
-        _.forEach(success, function(lane) {
-          length += lane.properties.longueur_section_m;
-        });
-        return length;
-      });
-    }
 
     return service;
   });

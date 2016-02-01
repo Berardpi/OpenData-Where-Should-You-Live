@@ -8,7 +8,7 @@
  * Controller of the openDataApp
  */
 angular.module('openDataApp')
-  .controller('MainCtrl', function ($scope, NeighborhoodSvc, CyclelaneSvc) {
+  .controller('MainCtrl', function ($scope, NeighborhoodSvc, CyclelaneSvc, StopSvc) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -30,10 +30,10 @@ angular.module('openDataApp')
     ];
 
     NeighborhoodSvc.load().then(function(success) {
-      $scope.neighborhoods.data = success._items;
+      $scope.neighborhoods.data = success;
       $scope.neighborhoods.style = getStyle;
       CyclelaneSvc.loadInPolygon($scope.neighborhoods.data[0].geometry).then(function(success) {
-        $scope.line = success._items;
+        $scope.line = success;
       });
     });
 
