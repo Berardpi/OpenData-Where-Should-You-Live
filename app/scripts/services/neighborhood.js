@@ -10,6 +10,7 @@ angular.module('Neighborhood', [])
       $http.get(service.route).then(function(success) {
         return angular.copy(success.data, service.data);
       });
+      return service.data
     };
 
     return service;

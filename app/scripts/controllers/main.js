@@ -47,6 +47,5 @@ angular.module('openDataApp')
         {hour: 10,sales: 30}
     ];
 
-    NeighborhoodSvc.load();
-    $scope.neighborhoods = NeighborhoodSvc.data;
+    $scope.neighborhoods = NeighborhoodSvc.load();
   });
