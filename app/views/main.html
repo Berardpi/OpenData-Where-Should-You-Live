@@ -10,11 +10,12 @@
     </p>
   </div>
 
-  <h3>{{neighborhoods}}</h3>
+  <h3>{{neighborhoods.data[0]}}</h3>
+  <h3>{{line}}</h3>
 
   <h2>La carte</h2>
   <div class="row marketing">
-    <leaflet defaults="defaults" center="center" height="480px" width="100%"></leaflet>
+    <leaflet defaults="defaults" center="center" height="480px" width="100%" geojson="neighborhoods"></leaflet>
   </div>
 
 </section>

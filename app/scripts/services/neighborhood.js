@@ -7,8 +7,8 @@ angular.module('Neighborhood', [])
     service.data = {};
 
     service.load = function() {
-      $http.get(service.route).then(function(success) {
-        return angular.copy(success.data, service.data);
+      return $http.get(service.route).then(function(success) {
+        return success.data._items;
       });
     };
 

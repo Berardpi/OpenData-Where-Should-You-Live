@@ -19,7 +19,11 @@ angular
     'nemLogging',
     'ui-leaflet',
     'Bubble',
-    'Neighborhood'
+    'Neighborhood',
+    'Cyclelane',
+    'Citelib',
+    'Gsm',
+    'Stop'
   ])
   .config(function ($routeProvider) {
     $routeProvider
