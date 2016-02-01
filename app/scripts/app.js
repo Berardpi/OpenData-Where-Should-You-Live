@@ -20,6 +20,7 @@ angular
     'ui-leaflet',
     'd3',
     'Bubble',
+    'Neighborhood'
   ])
   .config(function ($routeProvider) {
     $routeProvider
