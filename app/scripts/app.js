@@ -19,7 +19,8 @@ angular
     'nemLogging',
     'ui-leaflet',
     'Bubble',
-    'Neighborhood'
+    'Neighborhood',
+    'Cyclelane'
   ])
   .config(function ($routeProvider) {
     $routeProvider
