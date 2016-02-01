@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('Cyclelane', [])
-  .factory('CyclelaneSvc', function ($http) {
+angular.module('Cyclelane', ['Neighborhood'])
+  .factory('CyclelaneSvc', function ($http, NeighborhoodSvc) {
     var service = {};
     service.route = "http://127.0.0.1:5000/cyclelane";
 
@@ -26,6 +26,16 @@ angular.module('Cyclelane', [])
         });
         return length;
       });
+    }
+
+    service.lengthPerNeighborhood = function(){
+        var neighborhoods = NeighborhoodSvc.load();
+        var lengths = [];
+
+        _.forEach(neighborhoods, function(n) {
+          lengths.push({'name': n.properties.SDEC_LIEBEL, 'length': lengthInPolygon(n.geometry)});
+        });
+        return lengths
     }
 
     return service;
