@@ -4,6 +4,9 @@ This is a small application using a mongodb database, sets of open data and 3D.j
 
 ## Client 
 
+### Set up of the application
+Run `bower install` and `npm install` to install the dependencies.
+
 ### Build & development
 
 Run `grunt` for building and `grunt serve` for preview.
