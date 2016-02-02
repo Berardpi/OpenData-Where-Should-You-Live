@@ -8,7 +8,7 @@
  * Controller of the openDataApp
  */
 angular.module('openDataApp')
-  .controller('MainCtrl', function ($scope, NeighborhoodSvc, CyclelaneSvc, StopSvc) {
+  .controller('MainCtrl', function ($scope, NeighborhoodSvc, CyclelaneSvc, StopSvc, leafletGeoJsonEvents, leafletMapEvents) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -74,4 +74,13 @@ angular.module('openDataApp')
             }
         }
       }
+
+      $scope.$on("leafletDirectiveGeoJson.click", function(ev, leafletPayload) {
+          //console.log(leafletPayload.leafletObject.feature.properties.name);
+      });
+      $scope.$on("leafletDirectiveGeoJson.mouseover", function(ev, leafletPayload) {
+          $scope.selectedNeighborhood = leafletPayload.leafletObject.feature;
+      });
+
+
   });
