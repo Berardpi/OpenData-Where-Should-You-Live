@@ -1,7 +1,7 @@
 "use strict";
 
-angular.module('ParallelCoordinates',['Cyclelane', 'Stop', 'Gsm', 'Citelib'])
-  .controller('ParallelCoordinatesCtrl', function ($scope, CyclelaneSvc, StopSvc, GsmSvc, CitelibSvc) {
+angular.module('ParallelCoordinates',[])
+  .controller('ParallelCoordinatesCtrl', function ($scope) {
 
     $scope.criteria = "cyclelane";
     $scope.criteriaTraduc = {
