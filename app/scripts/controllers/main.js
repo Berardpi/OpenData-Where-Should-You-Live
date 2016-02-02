@@ -8,7 +8,7 @@
  * Controller of the openDataApp
  */
 angular.module('openDataApp')
-  .controller('MainCtrl', function ($scope, MongoApiSvc, NeighborhoodSvc, CyclelaneSvc, StopSvc, leafletGeoJsonEvents, leafletMapEvents) {
+  .controller('MainCtrl', function ($scope, MongoApiSvc, leafletGeoJsonEvents) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
