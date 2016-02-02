@@ -7,6 +7,7 @@ angular.module('Neighborhood', [])
     service.data = {};
 
     service.load = function() {
+      
       return $http.get(service.route).then(function(success) {
         return success.data._items;
       });

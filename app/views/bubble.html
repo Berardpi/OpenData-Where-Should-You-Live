@@ -1,7 +1,36 @@
 <section>
-  <header>
-    <h1>1 critère : n quartiers</h1>
+  <header class="page-header">
+    <h1>Comparaison mono-critère <small>({{criteriaTraduc[criteria]}})</small></h1>
   </header>
+  <div class="panel panel-default">
+    <form class="parameters" action="demo_form.asp" method="get">
+      <fieldset >
+        <legend>Critères</legend>
+        <div class="field-container">
+          <div class="radio">
+            <label>
+              <input type="radio" name="criteriaChosen" value="cyclelane" ng-model="criteria" ng-click="loadData()"/>&nbsp; Vélo voies
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="criteriaChosen" value="stop" ng-model="criteria" ng-click="loadData()" />&nbsp; Arrêts de tram
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="criteriaChosen" value="citelib" ng-model="criteria" ng-click="loadData()" />&nbsp; Citélib
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="criteriaChosen" value="gsm" ng-model="criteria" ng-click="loadData()" />&nbsp; GSM
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
 
-  <div bubble chart-data="sampleData"></div>
+  <div bubble chart-data="data" bubble-weight="properties.lengthProportion"></div>
 </section>

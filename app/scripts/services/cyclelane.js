@@ -33,7 +33,8 @@ angular.module('Cyclelane', ['Neighborhood'])
             return Promise.all(neighborhoods.map(function(n){
                 var obj = { properties : {'name': n.properties.SDEC_LIBEL}, 'geometry':n.geometry};
                 return service.lengthInPolygon(n.geometry).then(function(len){;
-                    obj.properties.lenght = len;
+                    obj.properties.length = len;
+                    obj.properties.lengthProportion = len/turf.area(n.geometry);
                     return obj;
                 });
             }))

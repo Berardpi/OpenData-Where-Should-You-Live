@@ -13,6 +13,7 @@
     "angular-simple-logger": "^0.1.7",
     "ui-leaflet": "^1.0.0",
     "d3": "^3.5.14",
+    "geojson-area" : "git@github.com:mapbox/geojson-area.git",
     "lodash": "~4.1.0"
   },
   "devDependencies": {

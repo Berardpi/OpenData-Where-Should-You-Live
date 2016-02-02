@@ -7,8 +7,10 @@ angular.module('Bubble')
       template: '<svg id="bubbleGraph" width="850" height="200"></svg>',
        link: function(scope, elem, attrs){
           // Load data :
-          var exp = $parse(attrs.chartData);
-          var dataToPlot=exp(scope);
+          var evalDataToPlot = $parse(attrs.chartData);
+          var bubbleWeightAttr = attrs.bubbleWeight;
+          console.log(bubbleWeight);
+          //var dataToPlot=$parse(attrs.chartData)(scope);
 
           var diameter = 600;
 
@@ -22,37 +24,77 @@ angular.module('Bubble')
                 .size([diameter, diameter])
                 .value(function(d) {return d.size;})
                 .sort(null)
-                .padding(3);
-
-          // generate data with calculated layout values
-          var nodes = bubble.nodes(processData(dataToPlot))
-                        .filter(function(d) { return !d.children; }); // filter out the outer bubble
- 
-          var vis = svg.selectAll('circle')
-                       .data(nodes);
-
-          vis.enter().append('circle')
-            .attr('transform', function(d) { return 'translate(' + d.x + ',' + d.y + ')'; })
-            .attr('r', function(d) { return d.r; })
-            .attr('class', function(d) { return d.className; });
+                .padding(5);
 
           // Update data
-          scope.$watchCollection(exp, function(newVal, oldVal){
-               dataToPlot=newVal;
-               nodes = bubble.nodes(processData(dataToPlot))
-                        .filter(function(d) { return !d.children; });
+          scope.$watchCollection(evalDataToPlot, function(newVal, oldVal){
+				drawGraph(newVal);
           });
   
           // Format data to fit in the required d3 layout
           function processData(data) {
-            var obj = data.data;
+            var obj = data;
 
             var newDataSet = [];
 
             for(var prop in obj) {
-              newDataSet.push({name: prop, className: prop.toLowerCase(), size: obj[prop]});
+              newDataSet.push({name: obj[prop].properties.name, className: "bubble", size: obj[prop].properties.length});
             }
             return {children: newDataSet};
+          }
+
+          function clearGraph(){
+	          svg.selectAll('.node').remove();
+          }
+
+          function drawGraph(dataToPlot){
+          	  if(dataToPlot === undefined || dataToPlot.length === 0){
+          	  	return; 
+          	  }
+
+          	  var duration = 1000;
+          	  var delay = 0;
+
+	          var nodesData = bubble.nodes(processData(dataToPlot))
+	                        .filter(function(d) { return !d.children; }); // filter out the outer bubble
+	 
+	          var nodes = svg.selectAll('.node')
+	          				 .remove()
+	                         .data(nodesData);
+
+	          nodes.enter()
+	          	   .append("g")
+      			   .attr("class", "node")
+      			   .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+      		  nodes.append('circle')
+	               .attr('r', function(d) { return d.r; })
+	               .attr('class', function(d) { return d.className; })
+	               .style('opacity', 0) 
+				   .transition()
+				   .duration(duration * 1.2)
+				   .style('opacity', 1);
+
+	          nodes.append("text")
+			       .attr("dy", ".3em")
+			       .style("text-anchor", "middle")
+			       .text(function(d) { 
+				       	var text = d.name.substring(0, d.r / 4);
+				        if(text !== d.name){
+				          	text += ".";
+				        }
+			       		return text; 
+			       })
+			       .style('opacity', 0) 
+				   .transition()
+				   .duration(duration * 1.2)
+				   .style('opacity', 1);
+
+			  nodes.exit()
+				  .transition()
+				  .duration(duration + delay)
+				  .style('opacity', 0)
+				  .remove();
           }
        }
    };

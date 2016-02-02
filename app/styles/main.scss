@@ -36,6 +36,10 @@ body {
   }
 }
 
+.page-header{
+  margin-top: 0px;
+}
+
 /* Custom page footer */
 .footer {
   padding-top: 19px;
@@ -90,6 +94,36 @@ body {
   }
 }
 
-.ca, .us {fill: #DF4949;}
-.uc, .br, .mx {fill: #E27A3F;}
-.other {fill: #45B29D;} 
+.radio + .radio, .checkbox + .checkbox{
+  margin-top: 10px;
+}
+
+/**
+* Bubble Graph 
+**/
+
+#bubbleGraph{
+  margin: auto;
+  display: flex;
+}
+
+.bubble {
+  fill: #35B7FC;
+}
+
+.parameters{
+  border-radius: 5px 5px 5px 5px;
+  border: 1px solid grey;
+  padding: 10px;
+  margin: 0px;
+
+  legend{
+    margin-bottom: 10px;
+  }
+
+  .field-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}

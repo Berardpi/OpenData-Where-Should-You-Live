@@ -18,6 +18,7 @@ angular
     'ngTouch',
     'nemLogging',
     'ui-leaflet',
+    'Navbar',
     'Bubble',
     'Neighborhood',
     'Cyclelane',
