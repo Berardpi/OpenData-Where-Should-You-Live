@@ -111,19 +111,19 @@ body {
   fill: #35B7FC;
 }
 
-.parameters{
-  border-radius: 5px 5px 5px 5px;
-  border: 1px solid grey;
-  padding: 10px;
-  margin: 0px;
+#bubble-criterias{
+  .parameters{
+    padding: 0px;
+    margin: 0px;
 
-  legend{
-    margin-bottom: 10px;
+    .field-container{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
   }
-
-  .field-container{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  
+  .panel-body{
+    padding: 0 15px 0 15px;
   }
 }

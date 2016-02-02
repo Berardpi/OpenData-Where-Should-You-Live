@@ -56,7 +56,7 @@ angular.module('Bubble')
 	                        .filter(function(d) { return !d.children; }); // filter out the outer bubble */
 	 
 	          var nodes = svg.selectAll('.node')
-	                         .data(nodesData, function(d) {console.log(d.name); return d.name; });
+	                         .data(nodesData, function(d) {return d.name; });
 
 			  nodes.transition()
 				   .duration(duration)
