@@ -26,7 +26,7 @@ angular.module('Cyclelane', ['Neighborhood'])
         });
         return length;
       });
-    }
+    };
 
     service.lengthPerNeighborhood = function(){
         return NeighborhoodSvc.load().then(function(neighborhoods) {
@@ -34,12 +34,12 @@ angular.module('Cyclelane', ['Neighborhood'])
                 var obj = { properties : {'name': n.properties.SDEC_LIBEL}, 'geometry':n.geometry, 'type':"Feature"};
                 return service.lengthInPolygon(n.geometry).then(function(len){;
                     obj.properties.length = len;
-                    obj.properties.lengthProportion = len/turf.area(n.geometry);
+                    obj.properties.weight = len/turf.area(n.geometry);
                     return obj;
                 });
             }))
         });
-    }
+    };
 
     return service;
   });

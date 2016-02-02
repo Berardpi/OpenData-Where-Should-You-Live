@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('Stop', [])
-  .factory('StopSvc', function ($http) {
+angular.module('Stop', ['Neighborhood'])
+  .factory('StopSvc', function ($http, NeighborhoodSvc) {
     var service = {};
     service.route = "http://127.0.0.1:5000/stop";
 
@@ -20,6 +20,19 @@ angular.module('Stop', [])
         service.labelize_stops(stops);
         return stops;
       });
+    };
+
+    service.loadPerNeighborhood = function(){
+        return NeighborhoodSvc.load().then(function(neighborhoods) {
+            return Promise.all(neighborhoods.map(function(n){
+                var obj = { properties : {'name': n.properties.SDEC_LIBEL}, 'geometry':n.geometry, 'type':"Feature"};
+                return service.loadInPolygon(n.geometry).then(function(stops){
+                    // Work out the density of stops per neighborhood
+                    obj.properties.weight = stops.length/turf.area(n.geometry);
+                    return obj;
+                });
+            }))
+        });
     };
 
     // Could be done directly in mongo on data import
