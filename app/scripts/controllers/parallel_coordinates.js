@@ -18,7 +18,9 @@ angular.module('ParallelCoordinates',['MongoApi'])
       ]
     };*/
 
-$scope.data= { 'dimensions' : {                      
+
+
+    $scope.data= { 'dimensions' : {                      
                         'autocar_count' : false,
                         'bus_count' : false,
                         'citelib_count' : false,
@@ -32,26 +34,22 @@ $scope.data= { 'dimensions' : {
                      'data': []
                     };
 
-    MongoApiSvc.loadPerNeighborhood('cyclelane').then(function(data) {
-      console.log(data);
-      var newDim = $scope.data.dimensions;
-      newDim.tram_count = true;
-      newDim.bus_count = true;
-      $scope.data= { 'dimensions' : $scope.data.dimensions,
-                     'data': data
-                    };
+    $scope.getKey = function(i){
+      return Object.keys($scope.data.dimensions)[i];
+    }
 
-      //$scope.data.data = data;
-    });
-/*
+    
+
     $scope.loadData = function(){
-      console.log("loadData");
-      MongoApiSvc.loadPerNeighborhood().then(function(data){
-        $scope.data= { 'dimensions' : {'velo' : true, 'stop': true, 'gsm': true}, 
-                     'data': data
-                    };
+      MongoApiSvc.loadPerNeighborhood('cyclelane').then(function(data) {
+        console.log(data);
+        $scope.data= { 'dimensions' : $scope.data.dimensions,
+                         'data': data
+                        };
+
       });
     }
-    */
-
+    
+    $scope.loadData();
+    
   });

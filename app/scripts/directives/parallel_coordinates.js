@@ -74,7 +74,7 @@ angular.module('ParallelCoordinates')
 				   .delay(function(d, i) {delay = i * 7; return delay;})
 			      .attr("transform", function(d) { return "translate(" + x(d) + ")"; })
 
-
+svg.selectAll(".dimension").remove();
 
 			  // Add a group element for each dimension.
 			  var g = svg.selectAll(".dimension")
@@ -92,7 +92,6 @@ angular.module('ParallelCoordinates')
 			   .attr("y", -9)
 			   .text(function(d) { return d; });
 
-			   console.log("call");
 			   // Add and store a brush method for each axis.
 			  g.append("g")
 			   .attr("class", "brush")
@@ -101,7 +100,7 @@ angular.module('ParallelCoordinates')
 			   .attr("x", -8)
 			   .attr("width", 16);
 
-			   //svg.selectAll(".brush").each(function(d) { console.log(d); d3.select(this).call(y[d].brush = d3.svg.brush().y(y[d]).on("brush", brush)); });
+			   svg.selectAll(".brush").each(function(d) {d3.select(this).call(y[d].brush = d3.svg.brush().y(y[d]).on("brush", brush)); });
 			   
 
           	  

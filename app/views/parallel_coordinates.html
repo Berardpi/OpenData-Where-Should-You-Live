@@ -10,9 +10,9 @@
     <div class="panel-body">
         <form class="parameters" action="demo_form.asp" method="get">
         <div class="field-container">
-          <div class="radio" ng-repeat="crit in data.dimensions">
+          <div class="radio" ng-repeat="crit in data.dimensions track by $index" > <!-- ng-repeat="crit in data.dimensions track by $index" -->
             <label>
-              <input type="radio" name="criteriaChosen" value="cyclelane" ng-model="criteria" ng-click="loadData()"/>&nbsp; {{crit.name}}
+              <input type="checkbox" name="criteriaChosen" value="false" ng-model="data.dimensions[getKey($index)]" ng-click="loadData()"/>&nbsp; {{getKey($index)}}
             </label>
           </div>
         </div>
