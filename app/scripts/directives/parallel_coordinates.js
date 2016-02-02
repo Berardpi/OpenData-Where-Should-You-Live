@@ -1,7 +1,7 @@
 "use strict";
 
-angular.module('Bubble')
-.directive('bubble', function($parse, $window) {
+angular.module('ParallelCoordinates')
+.directive('parallelcoordinates', function($parse, $window) {
    return{
       restrict:'EA',
       template: '<svg id="bubbleGraph" width="850" height="200"></svg>',

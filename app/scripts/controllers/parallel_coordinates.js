@@ -1,7 +1,7 @@
 "use strict";
 
-angular.module('Bubble',['Cyclelane', 'Stop', 'Gsm', 'Citelib'])
-  .controller('BubbleCtrl', function ($scope, CyclelaneSvc, StopSvc, GsmSvc, CitelibSvc) {
+angular.module('ParallelCoordinates',['Cyclelane', 'Stop', 'Gsm', 'Citelib'])
+  .controller('ParallelCoordinatesCtrl', function ($scope, CyclelaneSvc, StopSvc, GsmSvc, CitelibSvc) {
 
     $scope.criteria = "cyclelane";
     $scope.criteriaTraduc = {
@@ -35,5 +35,3 @@ angular.module('Bubble',['Cyclelane', 'Stop', 'Gsm', 'Citelib'])
     }
 
   });
-
-  
