@@ -21,7 +21,23 @@ angular.module('MongoApi', [])
     service.loadPerNeighborhood = function(collection){
       return service.load('neighborhood').then(function(neighborhoods) {
         return Promise.all(neighborhoods.map(function(n){
-          var obj = { properties : {'name': n.properties.SDEC_LIBEL}, 'geometry':n.geometry, 'type':"Feature"};
+          var area =  turf.area(n.geometry);
+          var obj = { 'properties' : 
+                      { 
+                        'name': n.properties.SDEC_LIBEL,
+                        'autocar_count' : n.properties.autocar_count / area,
+                        'bus_count' : n.properties.bus_count / area,
+                        'citelib_count' : n.properties.citelib_count / area,
+                        'gsm_2g_count' : n.properties.gsm_2g_count / area,
+                        'gsm_3g_count' : n.properties.gsm_3g_count / area,
+                        'gsm_4g_count' : n.properties.gsm_4g_count / area,
+                        'sncf_count' : n.properties.sncf_count / area,
+                        'tram_count' : n.properties.tram_count / area,
+                        'cyclelane_length' : n.properties.cyclelane_length / area,
+                      }, 
+                      'geometry':n.geometry, 
+                      'type':"Feature"
+                    };
           // Work out the density of stops per neighborhood
 
           switch(collection) {
@@ -38,6 +54,7 @@ angular.module('MongoApi', [])
                   obj.properties.weight = n.properties.cyclelane_length/turf.area(n.geometry);
                   break;
               default:
+                  break;
           }
 
           return obj;

@@ -10,6 +10,8 @@ angular.module('ParallelCoordinates')
           var evalDataToPlot = $parse(attrs.chartData); //(scope)
 
           var d3 = $window.d3;
+          var duration = 1000;
+          var delay = 0;
 
           var dimensions; 
 
@@ -36,54 +38,47 @@ angular.module('ParallelCoordinates')
 				drawGraph(newVal);
           });
   
-          // Format data to fit in the required d3 layout
-          function processData(data) {
-            var obj = data;
-
-            var newDataSet = [];
-
-            for(var prop in obj) {
-	            newDataSet.push({name: obj[prop].properties.name, className: "bubble", size: obj[prop].properties.weight});
-            }
-            return {children: newDataSet};
-          }
-
-          function clearGraph(){
-	          svg.selectAll('.node').remove();
-          }
-
           function drawGraph(dataToPlot){
-          	  if(dataToPlot === undefined || dataToPlot.length === 0){
+          	  if(dataToPlot === undefined || dataToPlot.data.length === 0){
           	  	return; 
           	  }
 
 			  // Extract the list of dimensions and create a scale for each.
-			  x.domain(dimensions = d3.keys(dataToPlot[0]).filter(function(dim) {
-    			return dim != "name" && (y[dim] = d3.scale.linear()
-        						 .domain(d3.extent(dataToPlot, function(neighb) {return +neighb[dim]; }))
+			  x.domain(dimensions = d3.keys(dataToPlot.dimensions).filter(function(dim) {
+    			return dim != "name" && dataToPlot.dimensions[dim] && (y[dim] = d3.scale.linear()
+        						 .domain(d3.extent(dataToPlot.data, function(neighb) {console.log(neighb.properties[dim]); return +neighb.properties[dim]; }))
         						 .range([height, 0]));
     			}));
 
 
 			  // Add grey background lines for context.
+			   svg.selectAll(".background").remove();
 			  background = svg.append("g")
 			      			  .attr("class", "background")
 			    			  .selectAll("path")
-			      			  .data(dataToPlot)
+			      			  .data(dataToPlot.data)
 			    			  .enter().append("path")
 			      			  .attr("d", path);
 
+			   svg.selectAll(".foreground").remove();
 			  // Add blue foreground lines for focus.
 			  foreground = svg.append("g")
 			      			  .attr("class", "foreground")
 			                  .selectAll("path")
-			                  .data(dataToPlot)
+			                  .data(dataToPlot.data)
 			                  .enter().append("path")
 			                  .attr("d", path);
 
+			  svg.selectAll(".dimension").transition()
+				   .duration(duration)
+				   .delay(function(d, i) {delay = i * 7; return delay;})
+			      .attr("transform", function(d) { return "translate(" + x(d) + ")"; })
+
+
+
 			  // Add a group element for each dimension.
 			  var g = svg.selectAll(".dimension")
-			      .data(dimensions)
+			      .data(dimensions, function(d){ return d;})
 			      .enter().append("g")
 			      .attr("class", "dimension")
 			      .attr("transform", function(d) { return "translate(" + x(d) + ")"; })
@@ -97,28 +92,34 @@ angular.module('ParallelCoordinates')
 			   .attr("y", -9)
 			   .text(function(d) { return d; });
 
-			   // Add and store a brush for each axis.
+			   console.log("call");
+			   // Add and store a brush method for each axis.
 			  g.append("g")
 			   .attr("class", "brush")
-			   .each(function(d) { d3.select(this).call(y[d].brush = d3.svg.brush().y(y[d]).on("brush", brush)); })
+			   .each(function(d) { console.log(d); d3.select(this).call(y[d].brush = d3.svg.brush().y(y[d]).on("brush", brush)); })
 			   .selectAll("rect")
 			   .attr("x", -8)
 			   .attr("width", 16);
+
+			   //svg.selectAll(".brush").each(function(d) { console.log(d); d3.select(this).call(y[d].brush = d3.svg.brush().y(y[d]).on("brush", brush)); });
+			   
+
           	  
           }
 
 			// Returns the path for a given data point.
 			function path(d) {
-  				return line(dimensions.map(function(p) { return [x(p), y[p](d[p])]; }));
+				
+  				return line(dimensions.map(function(p) { console.log(d.properties[p]); return [x(p), y[p](d.properties[p])]; }));
 			}
 
 			// Handles a brush event, toggling the display of foreground lines.
 			function brush() {
-			  var actives = dimensions.filter(function(p) { return !y[p].brush.empty(); }),
+			  var actives = dimensions.filter(function(p) { console.log(y); return !y[p].brush.empty(); }),
 			      extents = actives.map(function(p) { return y[p].brush.extent(); });
 			  foreground.style("display", function(d) {
 			    return actives.every(function(p, i) {
-			      return extents[i][0] <= d[p] && d[p] <= extents[i][1];
+			      return extents[i][0] <= d.properties[p] && d.properties[p] <= extents[i][1];
 			    }) ? null : "none";
 			  });
 			}

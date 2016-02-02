@@ -3,6 +3,23 @@
     <h1>Comparaison multi-critères</h1>
   </header>
 
+  <div id="bubble-criterias" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Critères</h3>
+    </div>
+    <div class="panel-body">
+        <form class="parameters" action="demo_form.asp" method="get">
+        <div class="field-container">
+          <div class="radio" ng-repeat="crit in data.dimensions">
+            <label>
+              <input type="radio" name="criteriaChosen" value="cyclelane" ng-model="criteria" ng-click="loadData()"/>&nbsp; {{crit.name}}
+            </label>
+          </div>
+        </div>
+    </form>
+    </div>
+  </div>
+
   <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">Graphe de coordonnées parallèles</h3>
