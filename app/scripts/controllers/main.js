@@ -15,8 +15,18 @@ angular.module('openDataApp')
       'Karma'
     ];
 
+    var rgb = function(r, g, b){
+        return ["rgb(",r,",",g,",",b,")"].join("");
+    }
+
+    var colors = [];
+    for(var i=0; i<20;i++){
+        colors[i]= rgb(255, Math.floor(i*255/20) ,0);
+    }
+
     $scope.neighborhoods = {};
     $scope.lenghtNeighborhoods = {};
+    $scope.weight = {};
 
    /*NeighborhoodSvc.load().then(function(success) {
       $scope.neighborhoods.data = success;
@@ -26,7 +36,10 @@ angular.module('openDataApp')
       });
     });*/
       CyclelaneSvc.lengthPerNeighborhood().then(function(success) {
+
           $scope.lenghtNeighborhoods.data = success;
+          $scope.weight.min = _.minBy(success, function(o) { return o.properties.weight}).properties.weight;
+          $scope.weight.max = _.maxBy(success, function(o) { return o.properties.weight}).properties.weight;
           $scope.lenghtNeighborhoods.style = getStyle;
       });
 
@@ -37,32 +50,28 @@ angular.module('openDataApp')
               scrollWheelZoom: false
           },
           center: {
-              lat: 45.180,
-              lng: 5.728,
-              zoom: 12
+              lat: 45.184,
+              lng: 5.718,
+              zoom: 13
           }
       });
 
       var getStyle = function(feature){
           return {
-              fillColor: getColor(feature.properties.SDEC_LIBEL),
-              weight: 2,
+              fillColor: getColor(feature.properties.weight),
+              weight: 1,
               opacity: 1,
               color: 'white',
               dashArray: '3',
-              fillOpacity: 0.3
+              fillOpacity: 0.5
           };
       };
-      var getColor = function(name) {
-          var rand = Math.floor((Math.random()*10));
-          if(name == "Centre Gare") {
-              return "yellow";
-          } else if(rand%3==0){
-              return "red"
-          } else if (rand%3 ==1){
-              return "green";
-          } else {
-              return "blue";
-          }
+      var getColor = function(weight) {
+        var inter = ($scope.weight.max - $scope.weight.min)/18;
+        for( var i=0; i<19; i++){
+            if(weight >= ($scope.weight.max - (inter *i))){
+                return colors[i];
+            }
+        }
       }
   });

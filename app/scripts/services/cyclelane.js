@@ -30,14 +30,14 @@ angular.module('Cyclelane', ['Neighborhood'])
 
     service.lengthPerNeighborhood = function(){
         return NeighborhoodSvc.load().then(function(neighborhoods) {
-            return Promise.all(neighborhoods.map(function(n){
-                var obj = { properties : {'name': n.properties.SDEC_LIBEL}, 'geometry':n.geometry, 'type':"Feature"};
-                return service.lengthInPolygon(n.geometry).then(function(len){;
-                    obj.properties.length = len;
-                    obj.properties.lengthProportion = len/turf.area(n.geometry);
-                    return obj;
-                });
-            }))
+                return Promise.all(neighborhoods.map(function(n){
+                    var obj = { properties : {'name': n.properties.SDEC_LIBEL}, 'geometry':n.geometry, 'type':"Feature"};
+                    return service.lengthInPolygon(n.geometry).then(function(len){;
+                        obj.properties.length = len;
+                        obj.properties.weight = len/turf.area(n.geometry);
+                        return obj;
+                    });
+                }))
         });
     }
 
