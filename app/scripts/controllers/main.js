@@ -35,26 +35,29 @@ angular.module('openDataApp')
         $scope.line = success;
       });
     });*/
-      // CyclelaneSvc.lengthPerNeighborhood().then(function(success) {
+       MongoApiSvc.loadPerNeighborhood("cyclelane").then(function(success) {
 
-      //     $scope.lenghtNeighborhoods.data = success;
-      //     $scope.weight.min = _.minBy(success, function(o) { return o.properties.weight}).properties.weight;
-      //     $scope.weight.max = _.maxBy(success, function(o) { return o.properties.weight}).properties.weight;
-      //     $scope.lenghtNeighborhoods.style = getStyle;
-      // });
+           $scope.lenghtNeighborhoods.data = success;
 
-      // angular.extend($scope, {
-      //     defaults: {
-      //         /* tileLayer: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', //'http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png',
-      //          maxZoom: 14,*/
-      //         scrollWheelZoom: false
-      //     },
-      //     center: {
-      //         lat: 45.184,
-      //         lng: 5.718,
-      //         zoom: 13
-      //     }
-      // });
+           $scope.weight.min = _.minBy(success, function(o) { return o.properties.weight}).properties.weight;
+           $scope.weight.max = _.maxBy(success, function(o) { return o.properties.weight}).properties.weight;
+
+
+           $scope.lenghtNeighborhoods.style = getStyle;
+       });
+
+       angular.extend($scope, {
+           defaults: {
+               /* tileLayer: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', //'http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png',
+                maxZoom: 14,*/
+               scrollWheelZoom: false
+           },
+           center: {
+               lat: 45.184,
+               lng: 5.718,
+               zoom: 13
+           }
+       });
 
       var getStyle = function(feature){
           return {
