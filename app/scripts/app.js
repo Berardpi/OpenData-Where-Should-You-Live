@@ -20,11 +20,7 @@ angular
     'ui-leaflet',
     'Navbar',
     'Bubble',
-    'Neighborhood',
-    'Cyclelane',
-    'Citelib',
-    'Gsm',
-    'Stop'
+    'MongoApi'
   ])
   .config(function ($routeProvider) {
     $routeProvider

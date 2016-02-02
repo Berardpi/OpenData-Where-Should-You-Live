@@ -2,10 +2,13 @@
   <header class="page-header">
     <h1>Comparaison mono-critère <small>({{criteriaTraduc[criteria]}})</small></h1>
   </header>
-  <div class="panel panel-default">
-    <form class="parameters" action="demo_form.asp" method="get">
-      <fieldset >
-        <legend>Critères</legend>
+
+  <div id="bubble-criterias" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Critères</h3>
+    </div>
+    <div class="panel-body">
+        <form class="parameters" action="demo_form.asp" method="get">
         <div class="field-container">
           <div class="radio">
             <label>
@@ -28,9 +31,20 @@
             </label>
           </div>
         </div>
-      </fieldset>
     </form>
+    </div>
   </div>
 
-  <div bubble chart-data="data" bubble-weight="properties.lengthProportion"></div>
+
+
+
+  <div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Bubble chart</h3>
+  </div>
+  <div class="panel-body">
+      <div bubble chart-data="data"></div>
+  </div>
+</div>
+
 </section>

@@ -45,3 +45,5 @@ curl http://sig.grenoble.fr/opendata/Antenne_GSM/json/DSPE_ANT_GSM_EPSG4326.json
 process_file "gsm.geojson"
 mongoimport --jsonArray --host localhost:27017 --db wsil --collection gsm --drop --file gsm.geojson
 rm gsm.geojson
+
+timeout 2s node process_data.js

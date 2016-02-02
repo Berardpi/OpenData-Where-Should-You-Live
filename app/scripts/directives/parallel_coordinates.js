@@ -1,7 +1,7 @@
 "use strict";
 
-angular.module('Bubble')
-.directive('bubble', function($parse, $window) {
+angular.module('ParallelCoordinates')
+.directive('parallelcoordinates', function($parse, $window) {
    return{
       restrict:'EA',
       template: '<svg id="bubbleGraph" width="850" height="200"></svg>',
@@ -56,7 +56,7 @@ angular.module('Bubble')
 	                        .filter(function(d) { return !d.children; }); // filter out the outer bubble */
 	 
 	          var nodes = svg.selectAll('.node')
-	                         .data(nodesData, function(d) {return d.name; });
+	                         .data(nodesData, function(d) {console.log(d.name); return d.name; });
 
 			  nodes.transition()
 				   .duration(duration)

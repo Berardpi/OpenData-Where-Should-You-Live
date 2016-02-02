@@ -1,10 +1,10 @@
 "use strict";
 
-angular.module('Navbar',[])
+angular.module('Navbar', [])
   .controller('NavbarCtrl', function ($scope, $location) {
 
-	$scope.isCurrent = function (navActive) { 
-        return navActive === $location.path();
-    };
+	$scope.isCurrent = function (navActive) {
+    return navActive === $location.path();
+  };
 
-  });
+});

@@ -1,7 +1,7 @@
 "use strict";
 
-angular.module('Bubble',['Cyclelane', 'Neighborhood'])
-  .controller('BubbleCtrl', function ($scope, CyclelaneSvc, NeighborhoodSvc) {
+angular.module('Bubble',['MongoApi'])
+  .controller('BubbleCtrl', function ($scope, MongoApiSvc) {
 
     $scope.criteria = "cyclelane";
     $scope.criteriaTraduc = {
@@ -12,28 +12,15 @@ angular.module('Bubble',['Cyclelane', 'Neighborhood'])
     }
     $scope.data = [];
 
-    CyclelaneSvc.lengthPerNeighborhood().then(function(data){
+    MongoApiSvc.loadPerNeighborhood('cyclelane').then(function(data) {
       $scope.data = data;
     });
-    
+
     $scope.loadData = function(){
       console.log("loadData");
-      var dataLoader = CyclelaneSvc.lengthPerNeighborhood;
-      if($scope.criteria === "cyclelane"){
-        dataLoader = CyclelaneSvc.lengthPerNeighborhood;
-      } else if($scope.criteria === "stop"){
-        // TODO
-      } else if($scope.criteria === "citelib"){
-        // TODO
-      } else if($scope.criteria === "gsm"){
-        // TODO
-      }
-
-      dataLoader().then(function(data){
+      MongoApiSvc.loadPerNeighborhood($scope.criteria).then(function(data){
         $scope.data = data;
       });
     }
 
   });
-
-  
