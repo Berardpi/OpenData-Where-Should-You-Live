@@ -21,11 +21,7 @@ angular
     'Navbar',
     'Bubble',
     'ParallelCoordinates',
-    'Neighborhood',
-    'Cyclelane',
-    'Citelib',
-    'Gsm',
-    'Stop'
+    'MongoApi'
   ])
   .config(function ($routeProvider) {
     $routeProvider
