@@ -4,24 +4,32 @@ angular.module('ParallelCoordinates')
 .directive('parallelcoordinates', function($parse, $window) {
    return{
       restrict:'EA',
-      template: '<svg id="bubbleGraph" width="850" height="200"></svg>',
+      template: '<svg id="parallelCoordinatesGraph" width="850" height="200"></svg>',
        link: function(scope, elem, attrs){
           // Load directive data :
           var evalDataToPlot = $parse(attrs.chartData); //(scope)
 
-          var diameter = 600;
-
           var d3 = $window.d3;
-          var svg = d3.select(elem.find("#bubbleGraph")[0])
-                      .attr('width', diameter)
-                      .attr('height', diameter);
 
-          // Set D3 layout : 
-          var bubble = d3.layout.pack()
-                .size([diameter, diameter])
-                .value(function(d) {return d.size;})
-                .sort(null)
-                .padding(5);
+          var dimensions; 
+
+          var margin = {top: 30, right: 0, bottom: 10, left: 0},
+			  width = 650 - margin.left - margin.right,
+			  height = 400 - margin.top - margin.bottom;
+
+		  var x = d3.scale.ordinal().rangePoints([0, width], 1),
+			  y = {};
+
+		  var line = d3.svg.line(),
+			  axis = d3.svg.axis().orient("left"),
+			  background,
+			  foreground;
+
+		  var svg = d3.select(elem.find("#parallelCoordinatesGraph")[0])
+			    	  .attr("width", width + margin.left + margin.right)
+			          .attr("height", height + margin.top + margin.bottom)
+			          .append("g")
+			          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
           // Update data
           scope.$watchCollection(evalDataToPlot, function(newVal, oldVal){
@@ -49,75 +57,71 @@ angular.module('ParallelCoordinates')
           	  	return; 
           	  }
 
-          	  var duration = 1000;
-          	  var delay = 0;
+			  // Extract the list of dimensions and create a scale for each.
+			  x.domain(dimensions = d3.keys(dataToPlot[0]).filter(function(dim) {
+    			return dim != "name" && (y[dim] = d3.scale.linear()
+        						 .domain(d3.extent(dataToPlot, function(neighb) {return +neighb[dim]; }))
+        						 .range([height, 0]));
+    			}));
 
-	          var nodesData = bubble.nodes(processData(dataToPlot))
-	                        .filter(function(d) { return !d.children; }); // filter out the outer bubble */
-	 
-	          var nodes = svg.selectAll('.node')
-	                         .data(nodesData, function(d) {console.log(d.name); return d.name; });
 
-			  nodes.transition()
-				   .duration(duration)
-				   .delay(function(d, i) {delay = i * 7; return delay;})
-				   .attr('transform', function(d) { return 'translate(' + d.x + ','
-				      + d.y + ')'; })
+			  // Add grey background lines for context.
+			  background = svg.append("g")
+			      			  .attr("class", "background")
+			    			  .selectAll("path")
+			      			  .data(dataToPlot)
+			    			  .enter().append("path")
+			      			  .attr("d", path);
 
-			  svg.selectAll('circle')
-	               .data(nodesData, function(d) { return d.name; })
-	               .transition()
-				   .duration(duration)
-				   .delay(function(d, i) {delay = i * 7; return delay;})
-				   .attr('r', function(d) { return d.r; })
+			  // Add blue foreground lines for focus.
+			  foreground = svg.append("g")
+			      			  .attr("class", "foreground")
+			                  .selectAll("path")
+			                  .data(dataToPlot)
+			                  .enter().append("path")
+			                  .attr("d", path);
 
-			  svg.selectAll('text')
-	               .data(nodesData, function(d) { return d.name; })
-	               .transition()
-				   .duration(duration)
-				   .delay(function(d, i) {delay = i * 7; return delay;})
-				   .text(function(d) { 
-				       	var text = d.name.substring(0, d.r / 4);
-				        if(text !== d.name){
-				          	text += ".";
-				        }
-			       		return text; 
-			       });
+			  // Add a group element for each dimension.
+			  var g = svg.selectAll(".dimension")
+			      .data(dimensions)
+			      .enter().append("g")
+			      .attr("class", "dimension")
+			      .attr("transform", function(d) { return "translate(" + x(d) + ")"; })
 
-	          var nodeEnter = nodes.enter()
-	          	   .append("g")
-      			   .attr("class", "node")
-      			   .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+			  // Add an axis and title.
+			  g.append("g")
+			   .attr("class", "axis")
+			   .each(function(d) { d3.select(this).call(axis.scale(y[d])); })
+			   .append("text")
+			   .style("text-anchor", "middle")
+			   .attr("y", -9)
+			   .text(function(d) { return d; });
 
-      		  nodeEnter.append('circle')
-	               .attr('r', function(d) { return d.r; })
-	               .attr('class', function(d) { return d.className; })
-	               .style('opacity', 0) 
-				   .transition()
-				   .duration(duration * 1.2)
-				   .style('opacity', 1);
-
-	          nodeEnter.append("text")
-			       .attr("dy", ".3em")
-			       .style("text-anchor", "middle")
-			       .text(function(d) { 
-				       	var text = d.name.substring(0, d.r / 4);
-				        if(text !== d.name){
-				          	text += ".";
-				        }
-			       		return text; 
-			       })
-			       .style('opacity', 0) 
-				   .transition()
-				   .duration(duration * 1.2)
-				   .style('opacity', 1);
-
-			  nodes.exit()
-				  .transition()
-				  .duration(duration + delay)
-				  .style('opacity', 0)
-				  .remove();
+			   // Add and store a brush for each axis.
+			  g.append("g")
+			   .attr("class", "brush")
+			   .each(function(d) { d3.select(this).call(y[d].brush = d3.svg.brush().y(y[d]).on("brush", brush)); })
+			   .selectAll("rect")
+			   .attr("x", -8)
+			   .attr("width", 16);
+          	  
           }
+
+			// Returns the path for a given data point.
+			function path(d) {
+  				return line(dimensions.map(function(p) { return [x(p), y[p](d[p])]; }));
+			}
+
+			// Handles a brush event, toggling the display of foreground lines.
+			function brush() {
+			  var actives = dimensions.filter(function(p) { return !y[p].brush.empty(); }),
+			      extents = actives.map(function(p) { return y[p].brush.extent(); });
+			  foreground.style("display", function(d) {
+			    return actives.every(function(p, i) {
+			      return extents[i][0] <= d[p] && d[p] <= extents[i][1];
+			    }) ? null : "none";
+			  });
+			}
        }
    };
 });

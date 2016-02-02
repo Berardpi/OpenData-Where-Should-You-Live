@@ -10,8 +10,11 @@ angular.module('ParallelCoordinates',['Cyclelane', 'Stop', 'Gsm', 'Citelib'])
       'citelib' : 'Citélib',
       'gsm' : 'GSM'
     }
-    $scope.data = [];
-
+    $scope.data = [  
+        {'name': 'quartier1', 'velo': 1, 'stop': 3, 'gsm': 1},
+        {'name': 'quartier2', 'velo': 2, 'stop': 2, 'gsm': 4},
+      ];
+/*
     CyclelaneSvc.lengthPerNeighborhood().then(function(data){
       $scope.data = data;
     });
@@ -33,5 +36,5 @@ angular.module('ParallelCoordinates',['Cyclelane', 'Stop', 'Gsm', 'Citelib'])
         $scope.data = data;
       });
     }
-
+*/
   });

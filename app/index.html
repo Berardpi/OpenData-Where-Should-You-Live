@@ -42,7 +42,8 @@
           <div class="collapse navbar-collapse" id="js-navbar-collapse" ng-controller="NavbarCtrl">
             <ul class="nav navbar-nav">
               <li ng-class="{ active: isCurrent('/')}"><a href="#/">Home</a></li>
-              <li ng-class="{ active: isCurrent('/bubble')}"><a ng-href="#/bubble">Bubble</a></li>
+              <li ng-class="{ active: isCurrent('/bubble')}"><a ng-href="#/bubble">Cmp. Mono critère</a></li>
+              <li ng-class="{ active: isCurrent('/parallel_coordinates')}"><a ng-href="#/parallel_coordinates">Cmp. Multi critères</a></li>
               <li ng-class="{ active: isCurrent('/about')}"><a ng-href="#/about">About</a></li>
             </ul>
           </div>
@@ -64,7 +65,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;/\&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;/&nbsp;&nbsp;\&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\ &nbsp; - Ensimag OpenData 2016 <br />
 &nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;\/&nbsp;&nbsp;/\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\&nbsp;&nbsp; - Florian Perroud - Pierre Berard - Youssef Ghoudan - Alexandre Rupp<br />
-&nbsp;_/_/__&nbsp;/_/_\____\___________________________________________________________  </p>
+&nbsp;_/_/__&nbsp;/_/_\____\_______________________________________________________________________  </p>
       </div>
     </div>
 
@@ -106,8 +107,10 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/bubble.js"></script>
+        <script src="scripts/controllers/parallel_coordinates.js"></script>
         <script src="scripts/controllers/navbar.js"></script>
         <script src="scripts/directives/bubble.js"></script>
+        <script src="scripts/directives/parallel_coordinates.js"></script>
         <script src="scripts/services/neighborhood.js"></script>
         <script src="scripts/services/cyclelane.js"></script>
         <script src="scripts/services/citelib.js"></script>

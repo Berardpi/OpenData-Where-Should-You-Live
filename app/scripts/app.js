@@ -20,6 +20,7 @@ angular
     'ui-leaflet',
     'Navbar',
     'Bubble',
+    'ParallelCoordinates',
     'Neighborhood',
     'Cyclelane',
     'Citelib',
@@ -42,6 +43,11 @@ angular
         templateUrl: 'views/bubble.html',
         controller: 'BubbleCtrl',
         controllerAs: 'bubble'
+      })
+      .when('/parallel_coordinates', {
+        templateUrl: 'views/parallel_coordinates.html',
+        controller: 'ParallelCoordinatesCtrl',
+        controllerAs: 'parallelCoordinates'
       })
       .otherwise({
         redirectTo: '/'
