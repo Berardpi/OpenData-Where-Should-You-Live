@@ -16,14 +16,19 @@ angular.module('openDataApp')
     ];
 
     $scope.neighborhoods = {};
+    $scope.lenghtNeighborhoods = {};
 
-    NeighborhoodSvc.load().then(function(success) {
+   /*NeighborhoodSvc.load().then(function(success) {
       $scope.neighborhoods.data = success;
       $scope.neighborhoods.style = getStyle;
       CyclelaneSvc.loadInPolygon($scope.neighborhoods.data[0].geometry).then(function(success) {
         $scope.line = success;
       });
-    });
+    });*/
+      CyclelaneSvc.lengthPerNeighborhood().then(function(success) {
+          $scope.lenghtNeighborhoods.data = success;
+          $scope.lenghtNeighborhoods.style = getStyle;
+      });
 
       angular.extend($scope, {
           defaults: {
