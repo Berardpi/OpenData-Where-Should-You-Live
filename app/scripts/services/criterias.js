@@ -37,5 +37,9 @@ angular.module('Criterias')
       return trad[dim];
     }
 
+    service.getKey = function(i){
+      return Object.keys(dimensions)[i];
+    };
+
     return service;
   });

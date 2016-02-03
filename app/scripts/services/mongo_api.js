@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('MongoApi', [])
-  .factory('MongoApiSvc', function ($http) {
+angular.module('MongoApi', ['Criterias'])
+  .factory('MongoApiSvc', function ($http, CriteriasSvc) {
     var service = {};
     service.route = "http://127.0.0.1:5000/";
 
@@ -39,45 +39,31 @@ angular.module('MongoApi', [])
                       'geometry':n.geometry,
                       'type':"Feature"
                     };
-                    
+
           // Work out the density of stops per neighborhood
           if(weightProperty !== undefined) {
-            if(weightProperty.constructor === Array){
+            if(weightProperty !== null && typeof weightProperty === 'object'){
 
               obj.properties.weight = 0;
 
-              var nb;
-              _.forEach(weightProperty, function(prop){
-                obj.properties.weight += obj.properties[weightProperty];
-                ++nb;
-              })
-              
-              obj.properties.weight /= nb;
+              var nb = 0;
+              for(var i= 0; i <= Object.keys(weightProperty).length; ++i){
+                var propKey = Object.keys(weightProperty)[i];
+                if(propKey !== "name" && weightProperty[propKey] === true){
+                  obj.properties.weight += obj.properties[propKey];
+                  ++nb;
+                }
+              }
+
+              if(nb > 0){
+                obj.properties.weight /= nb;
+              }
 
             } else {
               obj.properties.weight = obj.properties[weightProperty];
             }
           }
-          
-          /*
-          switch(weightProperty) {
-              case 'gsm':
-                  obj.properties.weight = (n.properties.gsm_4g_count + n.properties.gsm_3g_count + n.properties.gsm_2g_count)/turf.area(n.geometry);
-                  break;
-              case 'stop':
-                  obj.properties.weight = (n.properties.bus_count + n.properties.tram_count)/turf.area(n.geometry);
-                  break;
-              case 'citelib':
-                  obj.properties.weight = n.properties.citelib_count/turf.area(n.geometry);
-                  break;
-              case 'cyclelane':
-                  obj.properties.weight = n.properties.cyclelane_length/turf.area(n.geometry);
-                  break;
-              default:
-                  break;
-          }
-          */
-
+        
           return obj;
         }));
       });

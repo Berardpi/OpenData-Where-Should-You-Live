@@ -3,48 +3,20 @@
     <h1>Carte contextualisée</h1>
   </header>
 
-  <h2>Paramètres</h2>
-  <div>
-    <div id="bubble-criterias" class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Critères</h3>
-      </div>
-      <div class="panel-body">
-        <form class="parameters" action="demo_form.asp" method="get">
-          <div class="field-container">
-            <div class="radio" ng-repeat="n in data.dimensions">
-              <label>
-                <input type="radio" name="criteriaChosen" value="cyclelane" ng-model="criteria" ng-click="loadData()"/>&nbsp;
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="criteriaChosen" value="stop" ng-model="criteria" ng-click="loadData()" />&nbsp; Arrêts de tram
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="criteriaChosen" value="citelib" ng-model="criteria" ng-click="loadData()" />&nbsp; Citélib
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="criteriaChosen" value="gsm" ng-model="criteria" ng-click="loadData()" />&nbsp; GSM
-              </label>
-            </div>
-          </div>
-        </form>
-      </div>
+  <criterias data="data.weight" dimensions="data.dimensions" formtype="checkbox" load="loadData()"></criterias>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Bubble chart</h3>
     </div>
-  </div>
-  <h2>La carte</h2>
-  <div class="row marketing">
-    <leaflet legend="legend" defaults="defaults" center="center" height="480px" width="100%" geojson="neighborhood" ></leaflet>
-    <div class="overNeightborhood">
-      {{ overNeightborhood.properties.name || 'Pas de quartier'}}
-    </div>
-    <div class="selectedNeightborhood">
-      {{ selectedNeightborhood.feature.properties.name || 'Pas de quartier selectionné'}}
+    <div class="panel-body">
+      <leaflet legend="legend" defaults="defaults" center="center" height="480px" width="100%" geojson="neighborhood" ></leaflet>
+      <div class="overNeightborhood">
+        {{ overNeightborhood.properties.name || 'Pas de quartier'}}
+      </div>
+      <div class="selectedNeightborhood">
+        {{ selectedNeightborhood.feature.properties.name || 'Pas de quartier selectionné'}}
+      </div>
     </div>
   </div>
 </section>

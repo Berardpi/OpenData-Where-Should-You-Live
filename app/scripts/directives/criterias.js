@@ -16,13 +16,11 @@ angular.module('Criterias', [])
 
       		scope.formtype = attrs.formtype;
       	    scope.getTrad = CriteriasSvc.getTrad;
-
+      	    scope.getKey = CriteriasSvc.getKey;
 		    // Init dimensions
 		    scope.dimensions = CriteriasSvc.getDimensions();
 
-            scope.getKey = function(i){
-		      return Object.keys(scope.dimensions)[i];
-		    };
+            
       }
    }
 });

@@ -8,7 +8,7 @@
  * Controller of the openDataApp
  */
 angular.module('openDataApp')
-  .controller('MainCtrl', function ($scope, $window, MongoApiSvc, leafletGeoJsonEvents) {
+  .controller('MainCtrl', function ($scope, $window, MongoApiSvc, leafletGeoJsonEvents, CriteriasSvc) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -34,20 +34,33 @@ angular.module('openDataApp')
     $scope.neighborhood = {};
     $scope.weight = {};
 
+    $scope.data = {}
+    $scope.data.dimensions = CriteriasSvc.getDimensions();
+    $scope.data.weight = {};
+
       $scope.loadData = function() {
-          MongoApiSvc.loadPerNeighborhood($scope.criteria).then(function (success) {
+          MongoApiSvc.loadPerNeighborhood($scope.data.dimensions).then(function (success) {
+              if(success != undefined && success.length > 0 && success[0].properties.weight){
+                $scope.neighborhood.data = success;
 
-              $scope.neighborhood.data = success;
-
-              $scope.weight.min = _.minBy(success, function (o) {
-                  return o.properties.weight
-              }).properties.weight;
-              $scope.weight.max = _.maxBy(success, function (o) {
-                  return o.properties.weight
-              }).properties.weight;
+                $scope.weight.min = _.minBy(success, function (o) {
+                    return o.properties.weight;
+                }).properties.weight;
+                $scope.weight.max = _.maxBy(success, function (o) {
+                    return o.properties.weight;
+                }).properties.weight;
 
 
-              $scope.neighborhood.style = getStyle;
+                $scope.neighborhood.style = getStyle;
+              } else {
+                $scope.neighborhood.data = { 'properties' : {}, 
+                                             'geometry': { 
+                                                "type": "Point", 
+                                                "coordinates": [-105.01621, 39.57422]
+                                              },
+                                              'type':"Feature" 
+                                            };
+              }
           });
       }
 
