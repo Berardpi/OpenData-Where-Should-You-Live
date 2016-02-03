@@ -35,9 +35,9 @@ angular.module('MongoApi', ['Criterias'])
                         'sncf_count' : n.properties.sncf_count / area,
                         'tram_count' : n.properties.tram_count / area,
                         'cyclelane_length' : n.properties.cyclelane_length / area,
-                      },
-                      'geometry':n.geometry,
-                      'type':"Feature"
+                      }, 
+                      'geometry':n.geometry, 
+                      'type': n.type
                     };
         
           return obj;

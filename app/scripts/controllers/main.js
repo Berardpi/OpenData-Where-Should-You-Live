@@ -50,8 +50,16 @@ angular.module('openDataApp')
                 $scope.weight.max = _.maxBy(success, function (o) {
                     return o.properties.weight;
                 }).properties.weight;
-
-
+                  /*var grenoble = $scope.neighborhood.data[0];
+                   _.forEach($scope.neighborhood.data, function(n) {
+                   grenoble = turf.union(grenoble, n);
+                   console.log(grenoble);
+                   });*/
+                  MongoApiSvc.load($scope.data.dimensions).then(function(data) {
+                      // console.log(data);
+                      var new_geojson = $scope.neighborhood.data.concat(data);
+                      $scope.neighborhood.data = new_geojson;
+                  });
                 $scope.neighborhood.style = getStyle;
               } else {
                 $scope.neighborhood.data = { 'properties' : {}, 
@@ -67,8 +75,8 @@ angular.module('openDataApp')
 
        angular.extend($scope, {
            defaults: {
-               /* tileLayer: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', //'http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png',
-                maxZoom: 14,*/
+                /*tileLayer: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 'http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png',*/
+                /*maxZoom: 14,*/
                scrollWheelZoom: false
            },
            center: {
@@ -84,14 +92,22 @@ angular.module('openDataApp')
        });
 
       var getStyle = function(feature){
-          return {
-              fillColor: getColorArea(feature.properties.weight),
-              weight: 1,
-              opacity: 1,
-              color: "white",
-              dashArray: '3',
-              fillOpacity: 0.5
-          };
+          if(feature.properties.type_amenagement == "Piste cyclable"){
+              return {
+                  weight: 2,
+                  opacity: 1,
+                  color: "black"
+              }
+          } else {
+              return {
+                  fillColor: getColorArea(feature.properties.weight),
+                  weight: 1,
+                  opacity: 1,
+                  color: "white",
+                  dashArray: '3',
+                  fillOpacity: 0.5
+              };
+          }
       };
       var getColorArea = function(weight) {
         var inter = ($scope.weight.max - $scope.weight.min)/18;
@@ -102,20 +118,22 @@ angular.module('openDataApp')
         }
       }
       $scope.$on("leafletDirectiveGeoJson.click", function(ev, leafletPayload) {
-          if($scope.selectedNeightborhood) {
-              $scope.selectedNeightborhood.setStyle({
-                  weight: 1,
-                  color: "white"
+          if(leafletPayload.leafletObject.feature.geometry.type == "Polygon") {
+              if ($scope.selectedNeightborhood) {
+                  $scope.selectedNeightborhood.setStyle({
+                      weight: 1,
+                      color: "white"
+                  });
+              }
+              $scope.selectedNeightborhood = leafletPayload.leafletObject;
+              var center = turf.centroid($scope.selectedNeightborhood.feature);
+              $scope.center.lat = center.geometry.coordinates[1];
+              $scope.center.lng = center.geometry.coordinates[0];
+              leafletPayload.leafletObject.setStyle({
+                  weight: 4,
+                  color: "green"
               });
           }
-          $scope.selectedNeightborhood = leafletPayload.leafletObject;
-          var center= turf.centroid($scope.selectedNeightborhood.feature);
-          $scope.center.lat = center.geometry.coordinates[1];
-          $scope.center.lng = center.geometry.coordinates[0];
-          leafletPayload.leafletObject.setStyle({
-              weight: 4,
-              color: "green"
-          });
       });
       $scope.$on("leafletDirectiveGeoJson.mouseover", function(ev, leafletPayload) {
           $scope.overNeightborhood = leafletPayload.leafletObject.feature;
