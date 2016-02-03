@@ -20,7 +20,8 @@ angular.module('ParallelCoordinates',['MongoApi'])
 
 
 
-    $scope.data= { 'dimensions' : {                      
+    $scope.data= { 'dimensions' : {       
+                        'name' : true,            
                         'autocar_count' : false,
                         'bus_count' : false,
                         'citelib_count' : false,
@@ -51,5 +52,5 @@ angular.module('ParallelCoordinates',['MongoApi'])
     }
     
     $scope.loadData();
-    
+
   });

@@ -118,8 +118,13 @@ body {
 
     .field-container{
       display: flex;
-      justify-content: space-around;
+      justify-content: flex-start;
       align-items: center;
+      flex-wrap: wrap;
+      .checkbox, .radio{
+        flex-grow: 1;
+        flex-basis: 25%;
+      }
     }
   }
 

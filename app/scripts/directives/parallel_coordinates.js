@@ -17,7 +17,7 @@ angular.module('ParallelCoordinates')
 
           var margin = {top: 30, right: 0, bottom: 10, left: 0},
 			  width = 650 - margin.left - margin.right,
-			  height = 400 - margin.top - margin.bottom;
+			  height = 300 - margin.top - margin.bottom;
 
 		  var x = d3.scale.ordinal().rangePoints([0, width], 1),
 			  y = {};
@@ -38,17 +38,36 @@ angular.module('ParallelCoordinates')
 				drawGraph(newVal);
           });
   
+          function getDimension(dim, dataToPlot){
+          	
+          }
+
           function drawGraph(dataToPlot){
           	  if(dataToPlot === undefined || dataToPlot.data.length === 0){
           	  	return; 
           	  }
 
 			  // Extract the list of dimensions and create a scale for each.
-			  x.domain(dimensions = d3.keys(dataToPlot.dimensions).filter(function(dim) {
-    			return dim != "name" && dataToPlot.dimensions[dim] && (y[dim] = d3.scale.linear()
-        						 .domain(d3.extent(dataToPlot.data, function(neighb) {console.log(neighb.properties[dim]); return +neighb.properties[dim]; }))
+			  x.domain(dimensions = d3.keys(dataToPlot.dimensions).filter(function(dim){
+
+				if(dim == "name"){
+	          		//return; // dataToPlot.data.map(function(d) {console.log(d.properties[dim]); return d.properties[dim]; }).sort();
+	          		return y[dim] = d3.scale.ordinal()
+          .domain(dataToPlot.data.map(function(d) {console.log(d.properties[dim]); return d.properties[dim]; }).sort())
+          .rangePoints([height, 0]);
+	          	}
+
+	          	return dataToPlot.dimensions[dim] && 
+	          			(y[dim] = d3.scale.linear()
+        						 .domain(d3.extent(dataToPlot.data, 
+        						 	function(neighb) {
+        						 		console.log(neighb.properties[dim]); 
+        						 		return +neighb.properties[dim]; 
+        						 	}
+        						 ))
         						 .range([height, 0]));
-    			}));
+
+			  }));
 
 
 			  // Add grey background lines for context.
@@ -74,7 +93,7 @@ angular.module('ParallelCoordinates')
 				   .delay(function(d, i) {delay = i * 7; return delay;})
 			      .attr("transform", function(d) { return "translate(" + x(d) + ")"; })
 
-svg.selectAll(".dimension").remove();
+			  svg.selectAll(".dimension").remove();
 
 			  // Add a group element for each dimension.
 			  var g = svg.selectAll(".dimension")
