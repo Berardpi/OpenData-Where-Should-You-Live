@@ -18,7 +18,8 @@ angular.module('MongoApi', [])
       });
     };
 
-    service.loadPerNeighborhood = function(collection){
+    service.loadPerNeighborhood = function(weightProperty){
+
       return service.load('neighborhood').then(function(neighborhoods) {
         return Promise.all(neighborhoods.map(function(n){
           var area =  turf.area(n.geometry);
@@ -39,8 +40,26 @@ angular.module('MongoApi', [])
                       'type':"Feature"
                     };
           // Work out the density of stops per neighborhood
+          if(weightProperty !== undefined) {
+            if(weightProperty.constructor === Array){
 
-          switch(collection) {
+              obj.properties.weight = 0;
+
+              var nb;
+              _.forEach(weightProperty, function(prop){
+                obj.properties.weight += obj.properties[weightProperty];
+                ++nb;
+              })
+              
+              obj.properties.weight /= nb;
+
+            } else {
+              obj.properties.weight = obj.properties[weightProperty];
+            }
+          }
+          
+          /*
+          switch(weightProperty) {
               case 'gsm':
                   obj.properties.weight = (n.properties.gsm_4g_count + n.properties.gsm_3g_count + n.properties.gsm_2g_count)/turf.area(n.geometry);
                   break;
@@ -56,6 +75,7 @@ angular.module('MongoApi', [])
               default:
                   break;
           }
+          */
 
           return obj;
         }));

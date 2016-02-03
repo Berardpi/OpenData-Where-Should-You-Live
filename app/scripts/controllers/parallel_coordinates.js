@@ -4,12 +4,18 @@ angular.module('ParallelCoordinates',['MongoApi'])
   .controller('ParallelCoordinatesCtrl', function ($scope, MongoApiSvc) {
 
     $scope.criteria = "cyclelane";
-    $scope.criteriaTraduc = {
-      'cyclelane' : 'Vélo voies',
-      'stop' : 'Arrêts de tram',
-      'citelib' : 'Citélib',
-      'gsm' : 'GSM'
+    $scope.trad = {
+      'autocar_count' : 'Autocars',
+      'bus_count' : 'Bus',
+      'citelib_count' : 'Citelibs',
+      'gsm_2g_count' : '2G',
+      'gsm_3g_count' : '3G',
+      'gsm_4g_count' : '4G',
+      'sncf_count' : 'SNCF',
+      'tram_count' : 'Tram',
+      'cyclelane_length' : 'Vélo voies',
     }
+
 /*
     $scope.data = { 'dimensions' : {'velo' : true, 'stop': true, 'gsm': true}, 
       'data': [  
@@ -37,19 +43,19 @@ angular.module('ParallelCoordinates',['MongoApi'])
 
     $scope.getKey = function(i){
       return Object.keys($scope.data.dimensions)[i];
-    }
+    };
 
     
 
     $scope.loadData = function(){
       MongoApiSvc.loadPerNeighborhood('cyclelane').then(function(data) {
-        console.log(data);
+        console.log("load data");
         $scope.data= { 'dimensions' : $scope.data.dimensions,
                          'data': data
                         };
 
       });
-    }
+    };
     
     $scope.loadData();
 

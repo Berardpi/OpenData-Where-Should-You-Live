@@ -1,0 +1,26 @@
+  <div id="bubble-criterias" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Critères</h3>
+    </div>
+    <div class="panel-body">
+        <form class="parameters" action="demo_form.asp" method="get">
+        <div class="field-container">
+          <div ng-class="{{formtype}}" 
+               ng-if="getKey($index) !== 'name'" 
+               ng-repeat="crit in dimensions track by $index" > 
+            <label ng-if="formtype === 'checkbox'">
+              <input type="{{formtype}}" name="criteriaChosen" value="false" ng-model="dimensions[getKey($index)]" ng-click="load()"/>&nbsp; {{trad[getKey($index)]}}
+            </label>
+
+            <label ng-if="formtype === 'radio'">{{getKey($index)}}
+
+              <input type="{{formtype}}" name="criteriaChosen" value="{{getKey($index)}}" ng-model="data.criteria" ng-click="load()"/>&nbsp; {{trad[getKey($index)]}}
+            </label>
+
+          </div>
+        </div>
+    </form>
+    </div>
+  </div>
+
+  <!-- <criterias criteria="" type="checkbox" loadData="loadData"></criterias> -->

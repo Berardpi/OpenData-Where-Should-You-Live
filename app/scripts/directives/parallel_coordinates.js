@@ -53,15 +53,14 @@ angular.module('ParallelCoordinates')
 				if(dim == "name"){
 	          		//return; // dataToPlot.data.map(function(d) {console.log(d.properties[dim]); return d.properties[dim]; }).sort();
 	          		return y[dim] = d3.scale.ordinal()
-          .domain(dataToPlot.data.map(function(d) {console.log(d.properties[dim]); return d.properties[dim]; }).sort())
-          .rangePoints([height, 0]);
+          							  .domain(dataToPlot.data.map(function(d) { return d.properties[dim]; }).sort())
+                                      .rangePoints([height, 0]);
 	          	}
 
 	          	return dataToPlot.dimensions[dim] && 
 	          			(y[dim] = d3.scale.linear()
         						 .domain(d3.extent(dataToPlot.data, 
         						 	function(neighb) {
-        						 		console.log(neighb.properties[dim]); 
         						 		return +neighb.properties[dim]; 
         						 	}
         						 ))
@@ -114,7 +113,7 @@ angular.module('ParallelCoordinates')
 			   // Add and store a brush method for each axis.
 			  g.append("g")
 			   .attr("class", "brush")
-			   .each(function(d) { console.log(d); d3.select(this).call(y[d].brush = d3.svg.brush().y(y[d]).on("brush", brush)); })
+			   .each(function(d) { d3.select(this).call(y[d].brush = d3.svg.brush().y(y[d]).on("brush", brush)); })
 			   .selectAll("rect")
 			   .attr("x", -8)
 			   .attr("width", 16);
@@ -127,13 +126,12 @@ angular.module('ParallelCoordinates')
 
 			// Returns the path for a given data point.
 			function path(d) {
-				
-  				return line(dimensions.map(function(p) { console.log(d.properties[p]); return [x(p), y[p](d.properties[p])]; }));
+  				return line(dimensions.map(function(p) { return [x(p), y[p](d.properties[p])]; }));
 			}
 
 			// Handles a brush event, toggling the display of foreground lines.
 			function brush() {
-			  var actives = dimensions.filter(function(p) { console.log(y); return !y[p].brush.empty(); }),
+			  var actives = dimensions.filter(function(p) {return !y[p].brush.empty(); }),
 			      extents = actives.map(function(p) { return y[p].brush.extent(); });
 			  foreground.style("display", function(d) {
 			    return actives.every(function(p, i) {

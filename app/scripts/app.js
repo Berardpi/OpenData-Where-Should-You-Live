@@ -21,7 +21,8 @@ angular
     'Navbar',
     'Bubble',
     'ParallelCoordinates',
-    'MongoApi'
+    'MongoApi',
+    'Criterias'
   ])
   .config(function ($routeProvider) {
     $routeProvider
