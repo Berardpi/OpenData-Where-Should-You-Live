@@ -24,27 +24,25 @@ angular.module('openDataApp')
         colors[i]= rgb(255, Math.floor(i*255/20) ,0);
     }
 
-    $scope.neighborhoods = {};
-    $scope.lenghtNeighborhoods = {};
+    $scope.neighborhood = {};
     $scope.weight = {};
 
-   /*NeighborhoodSvc.load().then(function(success) {
-      $scope.neighborhoods.data = success;
-      $scope.neighborhoods.style = getStyle;
-      CyclelaneSvc.loadInPolygon($scope.neighborhoods.data[0].geometry).then(function(success) {
-        $scope.line = success;
-      });
-    });*/
-       MongoApiSvc.loadPerNeighborhood("cyclelane").then(function(success) {
+      $scope.loadData = function() {
+          MongoApiSvc.loadPerNeighborhood($scope.criteria).then(function (success) {
 
-           $scope.lenghtNeighborhoods.data = success;
+              $scope.neighborhood.data = success;
 
-           $scope.weight.min = _.minBy(success, function(o) { return o.properties.weight}).properties.weight;
-           $scope.weight.max = _.maxBy(success, function(o) { return o.properties.weight}).properties.weight;
+              $scope.weight.min = _.minBy(success, function (o) {
+                  return o.properties.weight
+              }).properties.weight;
+              $scope.weight.max = _.maxBy(success, function (o) {
+                  return o.properties.weight
+              }).properties.weight;
 
 
-           $scope.lenghtNeighborhoods.style = getStyle;
-       });
+              $scope.neighborhood.style = getStyle;
+          });
+      }
 
        angular.extend($scope, {
            defaults: {
@@ -79,11 +77,9 @@ angular.module('openDataApp')
       }
 
       $scope.$on("leafletDirectiveGeoJson.click", function(ev, leafletPayload) {
-          //console.log(leafletPayload.leafletObject.feature.properties.name);
+          $scope.selectedNeightborhood = leafletPayload.leafletObject.feature;
       });
       $scope.$on("leafletDirectiveGeoJson.mouseover", function(ev, leafletPayload) {
-          $scope.selectedNeighborhood = leafletPayload.leafletObject.feature;
+          $scope.overNeightborhood = leafletPayload.leafletObject.feature;
       });
-
-
   });

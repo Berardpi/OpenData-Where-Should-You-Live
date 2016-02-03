@@ -5,19 +5,46 @@
 
   <h2>Paramètres</h2>
   <div>
-    <p class="lead">
-      // TODO
-    </p>
+    <div id="bubble-criterias" class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Critères</h3>
+      </div>
+      <div class="panel-body">
+        <form class="parameters" action="demo_form.asp" method="get">
+          <div class="field-container">
+            <div class="radio" ng-repeat="n in data.dimensions">
+              <label>
+                <input type="radio" name="criteriaChosen" value="cyclelane" ng-model="criteria" ng-click="loadData()"/>&nbsp;
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="criteriaChosen" value="stop" ng-model="criteria" ng-click="loadData()" />&nbsp; Arrêts de tram
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="criteriaChosen" value="citelib" ng-model="criteria" ng-click="loadData()" />&nbsp; Citélib
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="criteriaChosen" value="gsm" ng-model="criteria" ng-click="loadData()" />&nbsp; GSM
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
-
-  <h3>{{neighborhoods.data[0]}}</h3>
-  <h3>{{line}}</h3>
-
   <h2>La carte</h2>
   <div class="row marketing">
-    <leaflet  defaults="defaults" center="center" height="480px" width="100%" geojson="lenghtNeighborhoods" ></leaflet>
+    <leaflet  defaults="defaults" center="center" height="480px" width="100%" geojson="neighborhood" ></leaflet>
+    <div class="overNeightborhood">
+      {{ overNeightborhood.properties.name || 'Pas de quartier'}}
+    </div>
     <div class="selectedNeightborhood">
-      {{ selectedNeighborhood.properties.name || 'Pas de quartier'}}
+      {{ selectedNeightborhood.properties.name || 'Pas de quartier selectionné'}}
     </div>
   </div>
 </section>
