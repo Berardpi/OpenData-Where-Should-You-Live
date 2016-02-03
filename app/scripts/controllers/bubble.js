@@ -3,9 +3,8 @@
 angular.module('Bubble',['MongoApi'])
   .controller('BubbleCtrl', function ($scope, MongoApiSvc, CriteriasSvc) {
     $scope.crit = {};
-    $scope.crit.criteria = undefined;
+    $scope.crit.criteria = CriteriasSvc.getKey(1);
     $scope.criterias = {};
-
 
     $scope.data = [];
 
@@ -21,4 +20,5 @@ angular.module('Bubble',['MongoApi'])
 
     $scope.getTrad = CriteriasSvc.getTrad;
 
+    $scope.loadData();
   });

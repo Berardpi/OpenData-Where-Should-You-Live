@@ -40,7 +40,6 @@ angular.module('openDataApp')
 
       $scope.loadData = function() {
           MongoApiSvc.relativeLoadPerNeighborhood($scope.data.dimensions).then(function (success) {
-              console.log(success);
               if(success != undefined && success.length > 0 && success[0].properties.weight){
                 $scope.neighborhood.data = success;
 
