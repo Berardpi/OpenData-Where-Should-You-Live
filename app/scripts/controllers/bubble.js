@@ -1,17 +1,11 @@
 "use strict";
 
 angular.module('Bubble',['MongoApi'])
-  .controller('BubbleCtrl', function ($scope, MongoApiSvc) {
+  .controller('BubbleCtrl', function ($scope, MongoApiSvc, CriteriasSvc) {
     $scope.crit = {};
     $scope.crit.criteria = undefined;
     $scope.criterias = {};
 
-    $scope.criteriaTraduc = {
-      'cyclelane' : 'Vélo voies',
-      'stop' : 'Arrêts de tram',
-      'citelib' : 'Citélib',
-      'gsm' : 'GSM'
-    }
 
     $scope.data = [];
 
@@ -23,5 +17,7 @@ angular.module('Bubble',['MongoApi'])
         });
       }
     }
+
+    $scope.getTrad = CriteriasSvc.getTrad;
 
   });

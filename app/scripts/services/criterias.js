@@ -1,9 +1,9 @@
 'use strict';
-/*
+
 angular.module('Criterias')
   .factory('CriteriasSvc', function () {
     var service = {};
-    console.log("hello");
+
     var trad = {
           'autocar_count' : 'Autocars',
           'bus_count' : 'Bus',
@@ -37,7 +37,5 @@ angular.module('Criterias')
       return trad[dim];
     }
 
-
     return service;
   });
-*/

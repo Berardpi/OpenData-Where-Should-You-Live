@@ -1,53 +1,17 @@
 <section>
   <header class="page-header">
-    <h1>Comparaison mono-critère <small>()</small></h1>
+    <h1>Comparaison mono-critère <small>({{getTrad(crit.criteria)}})</small></h1>
   </header>
 
- <criterias data="crit" dimensions="criterias" formtype="radio" load="loadData()"></criterias>
-
-
-  <div id="bubble-criterias" class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Critères</h3>
-    </div>
-    <div class="panel-body">
-        <form class="parameters" action="demo_form.asp" method="get">
-        <div class="field-container">
-          <div class="radio" ng-repeat="n in data.dimensions">
-            <label>
-              <input type="radio" name="criteriaChosen" value="cyclelane" ng-model="criteria" ng-click="loadData()"/>&nbsp; 
-            </label>
-          </div>
-          <div class="radio">
-            <label>
-              <input type="radio" name="criteriaChosen" value="stop" ng-model="criteria" ng-click="loadData()" />&nbsp; Arrêts de tram
-            </label>
-          </div>
-          <div class="radio">
-            <label>
-              <input type="radio" name="criteriaChosen" value="citelib" ng-model="criteria" ng-click="loadData()" />&nbsp; Citélib
-            </label>
-          </div>
-          <div class="radio">
-            <label>
-              <input type="radio" name="criteriaChosen" value="gsm" ng-model="criteria" ng-click="loadData()" />&nbsp; GSM
-            </label>
-          </div>
-        </div>
-    </form>
-    </div>
-  </div>
-
-
-
+  <criterias data="crit" dimensions="criterias" formtype="radio" load="loadData()"></criterias>
 
   <div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Bubble chart</h3>
+    <div class="panel-heading">
+      <h3 class="panel-title">Bubble chart</h3>
+    </div>
+    <div class="panel-body">
+        <div bubble chart-data="data"></div>
+    </div>
   </div>
-  <div class="panel-body">
-      <div bubble chart-data="data"></div>
-  </div>
-</div>
 
 </section>

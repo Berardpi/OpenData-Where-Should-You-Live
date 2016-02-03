@@ -9,12 +9,12 @@
                ng-if="getKey($index) !== 'name'" 
                ng-repeat="crit in dimensions track by $index" > 
             <label ng-if="formtype === 'checkbox'">
-              <input type="{{formtype}}" name="criteriaChosen" value="false" ng-model="dimensions[getKey($index)]" ng-click="load()"/>&nbsp; {{trad[getKey($index)]}}
+              <input type="{{formtype}}" name="criteriaChosen" value="false" ng-model="dimensions[getKey($index)]" ng-click="load()"/>&nbsp; {{getTrad(getKey($index))}}
             </label>
 
-            <label ng-if="formtype === 'radio'">{{getKey($index)}}
+            <label ng-if="formtype === 'radio'">
 
-              <input type="{{formtype}}" name="criteriaChosen" value="{{getKey($index)}}" ng-model="data.criteria" ng-click="load()"/>&nbsp; {{trad[getKey($index)]}}
+              <input type="{{formtype}}" name="criteriaChosen" value="{{getKey($index)}}" ng-model="data.criteria" ng-click="load()"/>&nbsp; {{getTrad(getKey($index))}}
             </label>
 
           </div>
