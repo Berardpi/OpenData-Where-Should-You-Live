@@ -8,7 +8,7 @@
  * Controller of the openDataApp
  */
 angular.module('openDataApp')
-  .controller('MainCtrl', function ($scope, MongoApiSvc, leafletGeoJsonEvents) {
+  .controller('MainCtrl', function ($scope, $window, MongoApiSvc, leafletGeoJsonEvents) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -21,8 +21,15 @@ angular.module('openDataApp')
 
     var colors = [];
     for(var i=0; i<20;i++){
-        colors[i]= rgb(255, Math.floor(i*255/20) ,0);
+        colors[i]= rgb(255, Math.floor(i*255/20) , Math.floor(i*255/20));
     }
+    var legend = [];
+    for(var i=0; i<20;i++){
+        legend[i]="     ";
+    }
+    legend[0] = "fort";
+    legend[10] = "moyen";
+    legend[19] = "faible";
 
     $scope.neighborhood = {};
     $scope.weight = {};
@@ -54,6 +61,11 @@ angular.module('openDataApp')
                lat: 45.184,
                lng: 5.718,
                zoom: 13
+           },
+           legend: {
+               position: 'bottomright',
+               colors: colors,
+               labels: legend
            }
        });
 
@@ -86,7 +98,6 @@ angular.module('openDataApp')
           var center= turf.centroid($scope.selectedNeightborhood.feature);
           $scope.center.lat = center.geometry.coordinates[1];
           $scope.center.lng = center.geometry.coordinates[0];
-          $scope.center.zoom = 14;
           leafletPayload.leafletObject.setStyle({
               weight: 4,
               color: "green"
@@ -95,4 +106,5 @@ angular.module('openDataApp')
       $scope.$on("leafletDirectiveGeoJson.mouseover", function(ev, leafletPayload) {
           $scope.overNeightborhood = leafletPayload.leafletObject.feature;
       });
+
   });
