@@ -11,17 +11,13 @@ angular.module('Criterias', [])
       },
       templateUrl: '../../views/criterias.html',
       link: function(scope, elem, attrs){
-      		//scope.data = {};
-      		//scope.data.criteria = attrs.criteria;
 
-      		scope.formtype = attrs.formtype;
-      	   scope.getTrad = CriteriasSvc.getTrad;
-      	   scope.getKey = CriteriasSvc.getKey;
+      	scope.formtype = attrs.formtype;
+      	scope.getTrad = CriteriasSvc.getTrad;
+      	scope.getKey = CriteriasSvc.getKey;
 
 		    // Init dimensions
 		    scope.dimensions = CriteriasSvc.getDimensions();
-
-            
       }
    }
 });

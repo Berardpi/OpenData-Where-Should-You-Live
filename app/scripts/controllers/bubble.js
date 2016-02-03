@@ -12,7 +12,8 @@ angular.module('Bubble',['MongoApi'])
     $scope.loadData = function(){
       if($scope.crit.criteria !== undefined){
         console.log("loadData "+ JSON.stringify($scope.crit.criteria));
-        MongoApiSvc.loadPerNeighborhood($scope.crit.criteria).then(function(data){
+
+        MongoApiSvc.relativeLoadPerNeighborhood($scope.crit.criteria).then(function(data){
           $scope.data = data;
         });
       }
