@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('MongoApi', [])
-  .factory('MongoApiSvc', function ($http) {
+angular.module('MongoApi', ['Criterias'])
+  .factory('MongoApiSvc', function ($http, CriteriasSvc) {
     var service = {};
     service.route = "http://127.0.0.1:5000/";
 
@@ -18,12 +18,13 @@ angular.module('MongoApi', [])
       });
     };
 
-    service.loadPerNeighborhood = function(collection){
+    service.loadPerNeighborhood = function(weightProperty){
+
       return service.load('neighborhood').then(function(neighborhoods) {
         return Promise.all(neighborhoods.map(function(n){
           var area =  turf.area(n.geometry);
-          var obj = { 'properties' : 
-                      { 
+          var obj = { 'properties' :
+                      {
                         'name': n.properties.SDEC_LIBEL,
                         'autocar_count' : n.properties.autocar_count / area,
                         'bus_count' : n.properties.bus_count / area,
@@ -38,27 +39,47 @@ angular.module('MongoApi', [])
                       'geometry':n.geometry, 
                       'type': n.type
                     };
+
           // Work out the density of stops per neighborhood
+          if(weightProperty !== undefined) {
+            if(weightProperty !== null && typeof weightProperty === 'object'){
 
-          switch(collection) {
-              case 'gsm':
-                  obj.properties.weight = (n.properties.gsm_4g_count + n.properties.gsm_3g_count + n.properties.gsm_2g_count)/turf.area(n.geometry);
-                  break;
-              case 'stop':
-                  obj.properties.weight = (n.properties.bus_count + n.properties.tram_count)/turf.area(n.geometry);
-                  break;
-              case 'citelib':
-                  obj.properties.weight = n.properties.citelib_count/turf.area(n.geometry);
-                  break;
-              case 'cyclelane':
-                  obj.properties.weight = n.properties.cyclelane_length/turf.area(n.geometry);
-                  break;
-              default:
-                  break;
+              obj.properties.weight = 0;
+
+              var nb = 0;
+              for(var i= 0; i <= Object.keys(weightProperty).length; ++i){
+                var propKey = Object.keys(weightProperty)[i];
+                if(propKey !== "name" && weightProperty[propKey] === true){
+                  obj.properties.weight += obj.properties[propKey];
+                  ++nb;
+                }
+              }
+
+              if(nb > 0){
+                obj.properties.weight /= nb;
+              }
+
+            } else {
+              obj.properties.weight = obj.properties[weightProperty];
+            }
           }
-
+        
           return obj;
         }));
+      });
+    };
+
+    service.relativeLoadPerNeighborhood = function(collection) {
+      return service.loadPerNeighborhood(collection).then(function(data) {
+        var max_weight = _.maxBy(data, function (o) {
+          return o.properties.weight;
+        }).properties.weight;
+
+        var factor = 100/max_weight;
+        _.each(data, function(d) {
+          d.properties.weight = factor * d.properties.weight;
+        });
+        return data;
       });
     };
 

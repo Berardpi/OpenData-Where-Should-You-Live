@@ -3,30 +3,16 @@
     <h1>Comparaison multi-critères</h1>
   </header>
 
-  <div id="bubble-criterias" class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Critères</h3>
-    </div>
-    <div class="panel-body">
-        <form class="parameters" action="demo_form.asp" method="get">
-        <div class="field-container">
-          <div class="checkbox" ng-if="getKey($index) !== 'name'" ng-repeat="crit in data.dimensions track by $index" > <!-- ng-repeat="crit in data.dimensions track by $index" -->
-            <label>
-              <input type="checkbox" name="criteriaChosen" value="false" ng-model="data.dimensions[getKey($index)]" ng-click="loadData()"/>&nbsp; {{getKey($index)}}
-            </label>
-          </div>
-        </div>
-    </form>
-    </div>
-  </div>
+
+ <criterias data="data.data" dimensions="data.dimensions" formtype="checkbox" load="loadData()"></criterias>
 
   <div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Graphe de coordonnées parallèles</h3>
+    <div class="panel-heading">
+      <h3 class="panel-title">Graphe de coordonnées parallèles</h3>
+    </div>
+    <div class="panel-body">
+        <div parallelcoordinates chart-data="data"></div>
+    </div>
   </div>
-  <div class="panel-body">
-      <div parallelcoordinates chart-data="data"></div>
-  </div>
-</div>
 
 </section>

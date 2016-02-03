@@ -41,7 +41,7 @@
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse" ng-controller="NavbarCtrl">
             <ul class="nav navbar-nav">
-              <li ng-class="{ active: isCurrent('/')}"><a href="#/">Home</a></li>
+              <li ng-class="{ active: isCurrent('/')}"><a href="#/">Carte</a></li>
               <li ng-class="{ active: isCurrent('/bubble')}"><a ng-href="#/bubble">Cmp. Mono critère</a></li>
               <li ng-class="{ active: isCurrent('/parallel_coordinates')}"><a ng-href="#/parallel_coordinates">Cmp. Multi critères</a></li>
               <li ng-class="{ active: isCurrent('/about')}"><a ng-href="#/about">About</a></li>
@@ -83,7 +83,6 @@
 
     <script src="bower_components/leaflet/dist/leaflet.js"></script>
     <script src="bower_components/turf/turf.min.js"></script>
-    <script src= "bower_compnents/d3-svg-legend/index.js"> </script>
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -112,7 +111,9 @@
         <script src="scripts/controllers/navbar.js"></script>
         <script src="scripts/directives/bubble.js"></script>
         <script src="scripts/directives/parallel_coordinates.js"></script>
+        <script src="scripts/directives/criterias.js"></script>
         <script src="scripts/services/mongo_api.js"></script>
+        <script src="scripts/services/criterias.js"></script>
         <!-- endbuild -->
 </body>
 </html>
