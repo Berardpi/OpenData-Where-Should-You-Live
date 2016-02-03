@@ -36,7 +36,7 @@ angular.module('MongoApi', [])
                         'cyclelane_length' : n.properties.cyclelane_length / area,
                       }, 
                       'geometry':n.geometry, 
-                      'type':"Feature"
+                      'type': n.type
                     };
           // Work out the density of stops per neighborhood
 
