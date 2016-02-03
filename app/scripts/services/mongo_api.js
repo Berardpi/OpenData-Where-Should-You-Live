@@ -23,8 +23,8 @@ angular.module('MongoApi', [])
       return service.load('neighborhood').then(function(neighborhoods) {
         return Promise.all(neighborhoods.map(function(n){
           var area =  turf.area(n.geometry);
-          var obj = { 'properties' : 
-                      { 
+          var obj = { 'properties' :
+                      {
                         'name': n.properties.SDEC_LIBEL,
                         'autocar_count' : n.properties.autocar_count / area,
                         'bus_count' : n.properties.bus_count / area,
@@ -35,10 +35,11 @@ angular.module('MongoApi', [])
                         'sncf_count' : n.properties.sncf_count / area,
                         'tram_count' : n.properties.tram_count / area,
                         'cyclelane_length' : n.properties.cyclelane_length / area,
-                      }, 
-                      'geometry':n.geometry, 
+                      },
+                      'geometry':n.geometry,
                       'type':"Feature"
                     };
+                    
           // Work out the density of stops per neighborhood
           if(weightProperty !== undefined) {
             if(weightProperty.constructor === Array){
@@ -79,6 +80,20 @@ angular.module('MongoApi', [])
 
           return obj;
         }));
+      });
+    };
+
+    service.relativeLoadPerNeighborhood = function(collection) {
+      return service.loadPerNeighborhood(collection).then(function(data) {
+        var max_weight = _.maxBy(data, function (o) {
+          return o.properties.weight;
+        }).properties.weight;
+
+        var factor = 100/max_weight;
+        _.each(data, function(d) {
+          d.properties.weight = factor * d.properties.weight;
+        });
+        return data;
       });
     };
 

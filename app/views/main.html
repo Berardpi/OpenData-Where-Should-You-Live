@@ -39,12 +39,12 @@
   </div>
   <h2>La carte</h2>
   <div class="row marketing">
-    <leaflet  defaults="defaults" center="center" height="480px" width="100%" geojson="neighborhood" ></leaflet>
+    <leaflet legend="legend" defaults="defaults" center="center" height="480px" width="100%" geojson="neighborhood" ></leaflet>
     <div class="overNeightborhood">
       {{ overNeightborhood.properties.name || 'Pas de quartier'}}
     </div>
     <div class="selectedNeightborhood">
-      {{ selectedNeightborhood.properties.name || 'Pas de quartier selectionné'}}
+      {{ selectedNeightborhood.feature.properties.name || 'Pas de quartier selectionné'}}
     </div>
   </div>
 </section>

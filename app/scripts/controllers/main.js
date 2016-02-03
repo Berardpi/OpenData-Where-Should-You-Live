@@ -8,7 +8,7 @@
  * Controller of the openDataApp
  */
 angular.module('openDataApp')
-  .controller('MainCtrl', function ($scope, MongoApiSvc, leafletGeoJsonEvents) {
+  .controller('MainCtrl', function ($scope, $window, MongoApiSvc, leafletGeoJsonEvents) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -21,8 +21,15 @@ angular.module('openDataApp')
 
     var colors = [];
     for(var i=0; i<20;i++){
-        colors[i]= rgb(255, Math.floor(i*255/20) ,0);
+        colors[i]= rgb(255, Math.floor(i*255/20) , Math.floor(i*255/20));
     }
+    var legend = [];
+    for(var i=0; i<20;i++){
+        legend[i]="     ";
+    }
+    legend[0] = "fort";
+    legend[10] = "moyen";
+    legend[19] = "faible";
 
     $scope.neighborhood = {};
     $scope.weight = {};
@@ -54,20 +61,25 @@ angular.module('openDataApp')
                lat: 45.184,
                lng: 5.718,
                zoom: 13
+           },
+           legend: {
+               position: 'bottomright',
+               colors: colors,
+               labels: legend
            }
        });
 
       var getStyle = function(feature){
           return {
-              fillColor: getColor(feature.properties.weight),
+              fillColor: getColorArea(feature.properties.weight),
               weight: 1,
               opacity: 1,
-              color: 'white',
+              color: "white",
               dashArray: '3',
               fillOpacity: 0.5
           };
       };
-      var getColor = function(weight) {
+      var getColorArea = function(weight) {
         var inter = ($scope.weight.max - $scope.weight.min)/18;
         for( var i=0; i<19; i++){
             if(weight >= ($scope.weight.max - (inter *i))){
@@ -75,11 +87,24 @@ angular.module('openDataApp')
             }
         }
       }
-
       $scope.$on("leafletDirectiveGeoJson.click", function(ev, leafletPayload) {
-          $scope.selectedNeightborhood = leafletPayload.leafletObject.feature;
+          if($scope.selectedNeightborhood) {
+              $scope.selectedNeightborhood.setStyle({
+                  weight: 1,
+                  color: "white"
+              });
+          }
+          $scope.selectedNeightborhood = leafletPayload.leafletObject;
+          var center= turf.centroid($scope.selectedNeightborhood.feature);
+          $scope.center.lat = center.geometry.coordinates[1];
+          $scope.center.lng = center.geometry.coordinates[0];
+          leafletPayload.leafletObject.setStyle({
+              weight: 4,
+              color: "green"
+          });
       });
       $scope.$on("leafletDirectiveGeoJson.mouseover", function(ev, leafletPayload) {
           $scope.overNeightborhood = leafletPayload.leafletObject.feature;
       });
+
   });
