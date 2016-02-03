@@ -15,8 +15,9 @@ angular.module('Criterias', [])
       		//scope.data.criteria = attrs.criteria;
 
       		scope.formtype = attrs.formtype;
-      	    scope.getTrad = CriteriasSvc.getTrad;
-      	    scope.getKey = CriteriasSvc.getKey;
+      	   scope.getTrad = CriteriasSvc.getTrad;
+      	   scope.getKey = CriteriasSvc.getKey;
+
 		    // Init dimensions
 		    scope.dimensions = CriteriasSvc.getDimensions();
 
