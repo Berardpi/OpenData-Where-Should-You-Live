@@ -37,6 +37,18 @@ MongoClient.connect(url, function(err, db) {
                 });
             });
 
+            db.collection('grenoble').findOne({"id" : "relation/80348"}, {_id: 1, id:1, geometry: 1}, function(err, docToInsert) {
+                if(err) throw err;
+                var i = 0;
+                db.collection('grenoble').remove({}, function(err, doc) {                    
+                    if(err) throw err;
+                    if(i++ < 1){                    
+                        db.collection('grenoble').update({},docToInsert, {upsert: true}, function(err, newGrenoble) {
+                            if(err) throw err;
+                        });
+                    }
+                });
+            });
 
 
             var tram_count = 0;

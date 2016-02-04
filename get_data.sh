@@ -61,7 +61,7 @@ rm gsm.geojson
  rm supermarket.{osm,geojson}
 
 # Grenoble Boundary :
- curl --globoff "http://overpass-api.de/api/interpreter?data=[out:json];(rel(80348);%3E;);out;" > grenoble.osm 
+ curl --globoff "http://overpass-api.de/api/interpreter?data=[out:json];(rel[name=Grenoble];%3E;);out;" > grenoble.osm 
  node_modules/osmtogeojson/osmtogeojson -f json grenoble.osm > grenoble.geojson
  process_file "grenoble.geojson"
  mongoimport --jsonArray --host localhost:27017 --db wsil --collection grenoble --drop --file grenoble.geojson

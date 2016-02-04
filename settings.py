@@ -60,4 +60,10 @@ DOMAIN = {
       "geometry": {"type": "polygon"}
     }
   },
+  "grenoble": {
+    "schema": {
+      "id" : {"type": "string"};
+      "geometry": {"type": "polygon"}
+    }
+  },
 }
