@@ -8,7 +8,7 @@
  * Controller of the openDataApp
  */
 angular.module('openDataApp')
-  .controller('MainCtrl', function ($scope, $window, MongoApiSvc, leafletGeoJsonEvents, CriteriasSvc) {
+  .controller('MainCtrl', function ($scope, $window, MongoApiSvc, CriteriasSvc) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -41,42 +41,68 @@ angular.module('openDataApp')
       $scope.loadData = function() {
           MongoApiSvc.relativeLoadPerNeighborhood($scope.data.dimensions).then(function (success) {
               if(success != undefined && success.length > 0 && success[0].properties.weight){
-                $scope.neighborhood.data = success;
+                  $scope.weight.min = _.minBy(success, function (o) {
+                      return o.properties.weight;
+                  }).properties.weight;
+                  $scope.weight.max = _.maxBy(success, function (o) {
+                      return o.properties.weight;
+                  }).properties.weight;
+                angular.extend($scope.layers.overlays, {
+                    neighborhood: {
+                        name:'Quartier',
+                        type: 'geoJSONShape',
+                        data: success,
+                        visible: true,
+                        layerOptions: {
+                            style: getStyle
+                          }
+                      }
+                  });
 
-                $scope.weight.min = _.minBy(success, function (o) {
-                    return o.properties.weight;
-                }).properties.weight;
-                $scope.weight.max = _.maxBy(success, function (o) {
-                    return o.properties.weight;
-                }).properties.weight;
                   /*var grenoble = $scope.neighborhood.data[0];
                    _.forEach($scope.neighborhood.data, function(n) {
                    grenoble = turf.union(grenoble, n);
                    console.log(grenoble);
                    });*/
-                  MongoApiSvc.load($scope.data.dimensions).then(function(data) {
-                      // console.log(data);
-                      var new_geojson = $scope.neighborhood.data.concat(data);
-                      $scope.neighborhood.data = new_geojson;
+                  MongoApiSvc.load("gsm").then(function(data) {
+                      angular.extend($scope.layers.overlays, {
+                          gsm: {
+                              name:'GSM',
+                              type: 'geoJSONAwesomeMarker',
+                              data: data,
+                              visible: false,
+                              icon: {
+                                  icon: 'heart',
+                                  markerColor: 'red',
+                                  prefix: 'glyphicon'
+                              }
+                          }
+                      });
+
                   });
                 $scope.neighborhood.style = getStyle;
-              } else {
-                $scope.neighborhood.data = { 'properties' : {}, 
-                                             'geometry': { 
-                                                "type": "Point", 
-                                                "coordinates": [-105.01621, 39.57422]
-                                              },
-                                              'type':"Feature" 
-                                            };
               }
           });
       }
 
        angular.extend($scope, {
            defaults: {
-                /*tileLayer: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 'http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png',*/
-                /*maxZoom: 14,*/
                scrollWheelZoom: false
+           },
+           layers: {
+               baselayers: {
+                   osm: {
+                       name: 'OpenStreetMap',
+                       url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                       type: 'xyz'
+                   },
+                   ocm: {
+                       name: 'OpenCycleMap',
+                       url: 'http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png',
+                       type: 'xyz'
+                   }
+               },
+               overlays:{}
            },
            center: {
                lat: 45.184,
@@ -116,7 +142,7 @@ angular.module('openDataApp')
             }
         }
       }
-      $scope.$on("leafletDirectiveGeoJson.click", function(ev, leafletPayload) {
+      $scope.$on("leafletDirectivePath.click", function(ev, leafletPayload) {
           if(leafletPayload.leafletObject.feature.geometry.type == "Polygon") {
               if ($scope.selectedNeightborhood) {
                   $scope.selectedNeightborhood.setStyle({
@@ -134,7 +160,7 @@ angular.module('openDataApp')
               });
           }
       });
-      $scope.$on("leafletDirectiveGeoJson.mouseover", function(ev, leafletPayload) {
+      $scope.$on("leafletDirectivePath.mouseover", function(ev, leafletPayload) {
           $scope.overNeightborhood = leafletPayload.leafletObject.feature;
       });
 
