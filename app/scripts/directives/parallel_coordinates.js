@@ -133,7 +133,9 @@ angular.module('ParallelCoordinates')
               extents = actives.map(function(p) { return y[p].brush.extent(); });
           foreground.style("display", function(d) {
             return actives.every(function(p, i) {
-              return extents[i][0] <= d.properties[p] && d.properties[p] <= extents[i][1];
+              //convert to pixel range if ordinal
+              var prop = (y[p].ticks) ? d.properties[p] : y[p](d.properties[p]); 
+              return extents[i][0] <= prop && prop <= extents[i][1];
             }) ? null : "none";
           });
         }
