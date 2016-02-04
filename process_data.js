@@ -5,6 +5,8 @@ var _ = require('lodash');
 // Connection URL
 var url = 'mongodb://127.0.0.1:27017/wsil';
 
+
+
 MongoClient.connect(url, function(err, db) {
     if(err) throw err;
 
@@ -13,12 +15,29 @@ MongoClient.connect(url, function(err, db) {
         if(err) throw err;
 
         if (neighborhood != null) {
+
             var citelibs = db.collection('citelib').find({geometry: { $geoWithin: { $geometry: neighborhood.geometry } } }).count(function(err, count) {
                 if(err) throw err;
                 db.collection('neighborhood').update({_id: neighborhood._id}, {$set: {"properties.citelib_count": count}}, function(err, doc) {
                     if(err) throw err;
                 });
             });
+
+            db.collection('restaurant').find({geometry: { $geoWithin: { $geometry: neighborhood.geometry } } }).count(function(err, count) {
+                if(err) throw err;
+                db.collection('neighborhood').update({_id: neighborhood._id}, {$set: {"properties.restaurant_count": count}}, function(err, doc) {
+                    if(err) throw err;
+                });
+            });
+
+            db.collection('supermarket').find({geometry: { $geoWithin: { $geometry: neighborhood.geometry } } }).count(function(err, count) {
+                if(err) throw err;
+                db.collection('neighborhood').update({_id: neighborhood._id}, {$set: {"properties.supermarket_count": count}}, function(err, doc) {
+                    if(err) throw err;
+                });
+            });
+
+
 
             var tram_count = 0;
             var bus_count = 0;

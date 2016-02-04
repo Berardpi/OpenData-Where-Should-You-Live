@@ -14,6 +14,8 @@ angular.module('Criterias')
           'sncf_count' : 'SNCF',
           'tram_count' : 'Tram',
           'cyclelane_length' : 'Vélo voies',
+          'supermarket_count' : 'Supermarchés',
+          'restaurant_count' : 'Restaurants',
           'name': 'Nom',
     };
 
@@ -40,6 +42,8 @@ angular.module('Criterias')
                         'sncf_count' : false,
                         'tram_count' : false,
                         'cyclelane_length' : false,
+                        'supermarket_count' : false,
+                        'restaurant_count' : false,
                       };
 
     service.getDimensions = function(){
