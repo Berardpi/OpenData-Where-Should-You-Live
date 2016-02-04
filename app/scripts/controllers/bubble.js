@@ -1,9 +1,13 @@
 "use strict";
 
 angular.module('Bubble',['MongoApi'])
-  .controller('BubbleCtrl', function ($scope, MongoApiSvc, CriteriasSvc) {
+  .controller('BubbleCtrl', function ($scope, $routeParams, MongoApiSvc, CriteriasSvc) {
     $scope.crit = {};
-    $scope.crit.criteria = CriteriasSvc.getKey(1);
+    if ($routeParams.criteria) {
+      $scope.crit.criteria = $routeParams.criteria;
+    } else {
+      $scope.crit.criteria = CriteriasSvc.getKey(1);
+    }
     $scope.criterias = {};
 
     $scope.data = [];

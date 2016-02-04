@@ -16,6 +16,7 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 
   </head>
@@ -81,6 +82,7 @@
 
        ga('create', 'UA-XXXXX-X');
        ga('send', 'pageview');
+
     </script>
     <script src="bower_components/leaflet/dist/leaflet.js"></script>
     <script src="bower_components/turf/turf.min.js"></script>
@@ -119,5 +121,10 @@
         <script src="scripts/services/mongo_api.js"></script>
         <script src="scripts/services/criterias.js"></script>
         <!-- endbuild -->
+    <script>
+     $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
+    </script>
 </body>
 </html>
