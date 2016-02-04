@@ -43,5 +43,21 @@ DOMAIN = {
       "properties": {"type": "list"},
       "geometry": {"type": "polygon"},
     }
-  }
+  },
+  "restaurant": {
+    "schema": {
+      "type": {"type": "string"},
+      "features": {"type": "geometrycollection"},
+      "properties": {"type": "list"},
+      "geometry": {"type": "polygon"}
+    }
+  },
+  "supermarket": {
+    "schema": {
+      "type": {"type": "string"},
+      "features": {"type": "geometrycollection"},
+      "properties": {"type": "list"},
+      "geometry": {"type": "polygon"}
+    }
+  },
 }
