@@ -62,5 +62,14 @@ angular.module('Criterias')
       return Object.keys(dimensions)[i];
     };
 
+    service.isThereADimensionSelected = function(){
+      for(var i= 0; i <= Object.keys(dimensions).length; ++i){
+        if(Object.keys(dimensions)[i] != "name" && dimensions[Object.keys(dimensions)[i]]){
+          return true;
+        }
+      }
+      return false;
+    };
+
     return service;
   });
