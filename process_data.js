@@ -36,19 +36,26 @@ MongoClient.connect(url, function(err, db) {
                     if(err) throw err;
                 });
             });
-
+/*
             db.collection('grenoble').findOne({"id" : "relation/80348"}, {_id: 1, id:1, geometry: 1}, function(err, docToInsert) {
                 if(err) throw err;
-                var i = 0;
+                console.log(JSON.stringify(docToInsert));
                 db.collection('grenoble').remove({}, function(err, doc) {                    
                     if(err) throw err;
-                    if(i++ < 1){                    
-                        db.collection('grenoble').update({},docToInsert, {upsert: true}, function(err, newGrenoble) {
-                            if(err) throw err;
-                        });
-                    }
+                    db.collection('grenoble').update({"id" : "relation/80348"},docToInsert, {upsert: true}, function(err, newGrenoble) {
+                        if(err) throw err;
+                    });
                 });
             });
+*/
+
+            db.collection('grenoble').remove({"id" : {$ne: "relation/80348"}}, function(err, doc) {
+                if(err) throw err;
+                db.collection('grenoble').update({"id" : "relation/80348"}, {geometry: doc.geometry}, function(err, newGrenoble) {
+                        if(err) throw err;
+                    });
+            });
+
 
 
             var tram_count = 0;
