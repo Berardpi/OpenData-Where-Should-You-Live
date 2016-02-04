@@ -150,14 +150,14 @@ angular.module('openDataApp')
                       if($scope.data.dimensions.supermarket_count) {
                           MongoApiSvc.load("supermarket").then(function (data) {
                               angular.extend($scope.layers.overlays, {
-                                  citeLibs: $scope.createLayer("Supermarchés", data, "shopping-cart", "green", "white")
+                                  supermarket: $scope.createLayer("Supermarchés", data, "shopping-cart", "green", "white")
                               });
                           });
                       }
                       if($scope.data.dimensions.restaurant_count) {
                           MongoApiSvc.load("restaurant").then(function (data) {
                               angular.extend($scope.layers.overlays, {
-                                  citeLibs: $scope.createLayer("Restaurants", data, "coffee", "darkgreen", "white")
+                                  restaurant: $scope.createLayer("Restaurants", data, "coffee", "darkgreen", "white")
                               });
                           });
                       }
