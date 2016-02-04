@@ -14,8 +14,22 @@ angular.module('Criterias')
           'sncf_count' : 'SNCF',
           'tram_count' : 'Tram',
           'cyclelane_length' : 'Vélo voies',
+          'supermarket_count' : 'Supermarchés',
+          'restaurant_count' : 'Restaurants',
           'name': 'Nom',
     };
+
+    var unite = {
+      'autocar_count' : ' arret(s)',
+      'bus_count' : ' arret(s)',
+      'citelib_count' : ' station(s)',
+      'gsm_2g_count' : ' antenne(s)',
+      'gsm_3g_count' : ' antenne(s)',
+      'gsm_4g_count' : ' antenne(s)',
+      'sncf_count' : ' quai(s)',
+      'tram_count' : ' arret(s)',
+      'cyclelane_length' : 'm',
+    }
 
     var dimensions = {       
                         'name' : true,            
@@ -28,6 +42,8 @@ angular.module('Criterias')
                         'sncf_count' : false,
                         'tram_count' : false,
                         'cyclelane_length' : false,
+                        'supermarket_count' : false,
+                        'restaurant_count' : false,
                       };
 
     service.getDimensions = function(){
@@ -38,8 +54,21 @@ angular.module('Criterias')
       return trad[dim];
     }
 
+    service.getUnite = function(dim) {
+      return unite[dim];
+    }
+
     service.getKey = function(i){
       return Object.keys(dimensions)[i];
+    };
+
+    service.isThereADimensionSelected = function(){
+      for(var i= 0; i <= Object.keys(dimensions).length; ++i){
+        if(Object.keys(dimensions)[i] != "name" && dimensions[Object.keys(dimensions)[i]]){
+          return true;
+        }
+      }
+      return false;
     };
 
     return service;

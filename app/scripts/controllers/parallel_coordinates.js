@@ -14,8 +14,6 @@ angular.module('ParallelCoordinates', ['MongoApi', 'Criterias'])
       return Object.keys($scope.data.dimensions)[i];
     };
 
-
-
     $scope.loadData = function(){
       MongoApiSvc.relativeLoadPerNeighborhood($scope.data.dimensions).then(function (success) {
         if(success != undefined && success.length > 0){
