@@ -22,7 +22,8 @@ angular
     'Bubble',
     'ParallelCoordinates',
     'MongoApi',
-    'Criterias'
+    'Criterias',
+    'Bar'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -45,6 +46,11 @@ angular
         templateUrl: 'views/parallel_coordinates.html',
         controller: 'ParallelCoordinatesCtrl',
         controllerAs: 'parallelCoordinates'
+      })
+      .when('/bar', {
+        templateUrl: 'views/bar.html',
+        controller: 'BarCtrl',
+        controllerAs: 'bar'
       })
       .otherwise({
         redirectTo: '/'
