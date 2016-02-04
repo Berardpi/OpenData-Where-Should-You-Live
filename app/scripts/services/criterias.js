@@ -17,6 +17,18 @@ angular.module('Criterias')
           'name': 'Nom',
     };
 
+    var unite = {
+      'autocar_count' : ' arret(s)',
+      'bus_count' : ' arret(s)',
+      'citelib_count' : ' station(s)',
+      'gsm_2g_count' : ' antenne(s)',
+      'gsm_3g_count' : ' antenne(s)',
+      'gsm_4g_count' : ' antenne(s)',
+      'sncf_count' : ' quai(s)',
+      'tram_count' : ' arret(s)',
+      'cyclelane_length' : 'm',
+    }
+
     var dimensions = {       
                         'name' : true,            
                         'autocar_count' : false,
@@ -36,6 +48,10 @@ angular.module('Criterias')
 
     service.getTrad = function(dim){
       return trad[dim];
+    }
+
+    service.getUnite = function(dim) {
+      return unite[dim];
     }
 
     service.getKey = function(i){

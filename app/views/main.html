@@ -19,4 +19,18 @@
       </div>
     </div>
   </div>
+
+  <div class="panel panel-default" ng-show="neighborhoodData">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{selectedNeightborhood.feature.properties.name}}</h3>
+    </div>
+    <div class="panel-body">
+    <ul>
+      <li ng-repeat="(key, value) in data.dimensions" ng-if="key != 'name'">
+        {{getTrad(key)}} : {{neighborhoodData.properties[key]}}{{getUnite(key)}}
+        <!-- {{value}} -->
+      </li>
+    </ul>
+    </div>
+  </div>
 </section>

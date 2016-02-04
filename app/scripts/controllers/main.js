@@ -34,6 +34,9 @@ angular.module('openDataApp')
     $scope.neighborhood = {};
     $scope.weight = {};
 
+    $scope.getTrad = CriteriasSvc.getTrad;
+    $scope.getUnite = CriteriasSvc.getUnite;
+
     $scope.data = {}
     $scope.data.dimensions = CriteriasSvc.getDimensions();
     $scope.data.weight = {};
@@ -139,4 +142,14 @@ angular.module('openDataApp')
       });
 
       $scope.loadData();
+
+      $scope.neighborhoodData = undefined;
+      $scope.$watch('selectedNeightborhood', function() {
+        if ($scope.selectedNeightborhood != undefined) {
+          MongoApiSvc.load("neighborhood?where={\"properties.SDEC_LIBEL\": \"" + $scope.selectedNeightborhood.feature.properties.name + "\"}&projection={\"properties\": 1}").then(function(data) {
+            $scope.neighborhoodData = data[0];
+            $scope.neighborhoodData.properties.cyclelane_length = Math.round($scope.neighborhoodData.properties.cyclelane_length);
+          });
+        }
+      });
   });
