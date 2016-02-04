@@ -46,4 +46,16 @@ process_file "gsm.geojson"
 mongoimport --jsonArray --host localhost:27017 --db wsil --collection gsm --drop --file gsm.geojson
 rm gsm.geojson
 
+# Restaurant: 
+# curl 'http://overpass-api.de/api/interpreter?data=[out:json];area[name=%22Grenoble%22]-%3E.a;(node(area.a)[amenity=restaurant];way(area.a)[amenity=restaurant];rel(area.a)[amenity=restaurant];);out;' > restaurant.geojson
+# process_file_bis "restaurant.geojson"
+# mongoimport --jsonArray --host localhost:27017 --db wsil --collection restaurant --drop --file restaurant.geojson
+# rm restaurant.geojson
+
+# Supermarket :
+# curl 'http://overpass-api.de/api/interpreter?data=[out:json];area[name=%22Grenoble%22]-%3E.a;(node(area.a)[shop=supermarket];way(area.a)[shop=supermarket];rel(area.a)[shop=supermarket];);out;' > supermarket.geojson
+# process_file_bis "supermarket.geojson"
+# mongoimport --jsonArray --host localhost:27017 --db wsil --collection supermarket --drop --file supermarket.geojson
+# rm supermarket.geojson
+
 timeout 2s node process_data.js
