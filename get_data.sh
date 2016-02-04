@@ -64,7 +64,7 @@ rm gsm.geojson
  curl --globoff "http://overpass-api.de/api/interpreter?data=[out:json];(rel[name=Grenoble];%3E;);out;" > grenoble.osm 
  node_modules/osmtogeojson/osmtogeojson -f json grenoble.osm > grenoble.geojson
  process_file "grenoble.geojson"
- mongoimport --jsonArray --host localhost:27017 --db wsil --collection grenoble --drop --file grenoble.geojson
+ mongoimport --jsonArray --host localhost:27017 --db wsil --collection grenoble_all --drop --file grenoble.geojson
  rm grenoble.{osm,geojson}
 
 # Process data in node to accelerate all futur requests
