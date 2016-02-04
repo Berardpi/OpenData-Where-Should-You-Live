@@ -44,7 +44,6 @@ angular.module('openDataApp')
       $scope.loadData = function() {
           MongoApiSvc.relativeLoadPerNeighborhood($scope.data.dimensions).then(function (success) {
               if(success != undefined && success.length > 0 && CriteriasSvc.isThereADimensionSelected()){
-                  $scope.layers.overlays = {};
                   $scope.weight.min = _.minBy(success, function (o) {
                       return o.properties.weight;
                   }).properties.weight;
@@ -84,20 +83,31 @@ angular.module('openDataApp')
                                   angular.extend($scope.layers.overlays, {
                                       gsm_2G: $scope.createLayer("GSM 2G", data_2G, "rss", "darkred", "#FFFF00")
                                   });
+                              } else {
+                                  delete ($scope.layers.overlays.gsm_2G);
                               }
                               if($scope.data.dimensions.gsm_3g_count) {
                                   angular.extend($scope.layers.overlays, {
                                       gsm_3G:  $scope.createLayer("GSM 3G", data_3G, "rss", "darkred", "#FFA500")
                                   });
+                              } else {
+                                  delete ($scope.layers.overlays.gsm_3G);
                               }
                               if($scope.data.dimensions.gsm_4g_count) {
                                   angular.extend($scope.layers.overlays, {
                                       gsm_4G:  $scope.createLayer("GSM 4G", data_4G, "rss", "darkred", "#FF0000")
                                   });
+                              } else {
+                                  delete ($scope.layers.overlays.gsm_4G);
                               }
 
                           });
+                      } else {
+                          delete ($scope.layers.overlays.gsm_2G);
+                          delete ($scope.layers.overlays.gsm_3G);
+                          delete ($scope.layers.overlays.gsm_4G);
                       }
+
                       if($scope.data.dimensions.autocar_count || $scope.data.dimensions.bus_count || $scope.data.dimensions.sncf_count || $scope.data.dimensions.tram_count ) {
                           MongoApiSvc.loadInPolygon("stop", grenoble[0].geometry).then(function (data) {
                               var tram = [];
@@ -122,24 +132,37 @@ angular.module('openDataApp')
                                   angular.extend($scope.layers.overlays, {
                                       autocar: $scope.createLayer("Autocar", autocar, "bus", "blue", "white")
                                   });
+                              } else {
+                                  delete ($scope.layers.overlays.autocar);
                               }
                               if($scope.data.dimensions.bus_count) {
                                   angular.extend($scope.layers.overlays, {
                                       bus:  $scope.createLayer("Bus", bus, "bus", "purple", "white")
                                   });
+                              } else {
+                                  delete ($scope.layers.overlays.bus);
                               }
                               if($scope.data.dimensions.sncf_count) {
                                   angular.extend($scope.layers.overlays, {
                                       gare:  $scope.createLayer("Gare", sncf, "train", "darkpuple", "white")
                                   });
+                              } else {
+                                  delete ($scope.layers.overlays.gare);
                               }
                               if($scope.data.dimensions.tram_count) {
                                   angular.extend($scope.layers.overlays, {
                                       tram:  $scope.createLayer("Tram", tram, "subway", "cadetblue", "white")
                                   });
+                              } else {
+                                  delete ($scope.layers.overlays.tram);
                               }
 
                           });
+                      } else {
+                          delete ($scope.layers.overlays.autocar);
+                          delete ($scope.layers.overlays.bus);
+                          delete ($scope.layers.overlays.gare);
+                          delete ($scope.layers.overlays.tram);
                       }
                       if($scope.data.dimensions.citelib_count) {
                           MongoApiSvc.loadInPolygon("citelib", grenoble[0].geometry).then(function (data) {
@@ -147,6 +170,8 @@ angular.module('openDataApp')
                                   citeLibs: $scope.createLayer("CiteLibs", data, "automobile", "red", "white")
                               });
                           });
+                      } else {
+                          delete ($scope.layers.overlays.citeLibs);
                       }
                       if($scope.data.dimensions.supermarket_count) {
                           MongoApiSvc.loadInPolygon("supermarket", grenoble[0].geometry).then(function (data) {
@@ -154,6 +179,8 @@ angular.module('openDataApp')
                                   supermarket: $scope.createLayer("Supermarchés", data, "shopping-cart", "green", "white")
                               });
                           });
+                      } else {
+                          delete ($scope.layers.overlays.supermarket);
                       }
                       if($scope.data.dimensions.restaurant_count) {
                           MongoApiSvc.loadInPolygon("restaurant", grenoble[0].geometry).then(function (data) {
@@ -161,6 +188,8 @@ angular.module('openDataApp')
                                   restaurant: $scope.createLayer("Restaurants", data, "coffee", "darkgreen", "white")
                               });
                           });
+                      } else {
+                          delete ($scope.layers.overlays.restaurant);
                       }
                   })
               } else {
@@ -174,7 +203,7 @@ angular.module('openDataApp')
                   name: name,
                   type: 'geoJSONAwesomeMarker',
                   data: data,
-                  visible: false,
+                  visible: true,
                   icon: {
                       icon: icon,
                       markerColor: color,
