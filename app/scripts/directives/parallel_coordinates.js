@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module('ParallelCoordinates')
-.directive('parallelcoordinates', function($parse, $window) {
+.directive('parallelcoordinates', function($parse, $window, CriteriasSvc) {
    return{
       restrict:'EA',
       template: '<svg id="parallelCoordinatesGraph" width="850" height="200"></svg>',
@@ -109,7 +109,7 @@ angular.module('ParallelCoordinates')
            .append("text")
            .style("text-anchor", "middle")
            .attr("y", -9)
-           .text(function(d) { return d; });
+           .text(function(d) { return CriteriasSvc.getTrad(d); });
 
           // Add and store a brush method for each axis.
           g.append("g")
