@@ -62,6 +62,9 @@ DOMAIN = {
   },
   "grenoble": {
     "schema": {
+      "id": {"type": "string"},
+      "type": {"type": "string"},
+      "properties": {"type": "list"},
       "geometry": {"type": "polygon"}
     }
   },
