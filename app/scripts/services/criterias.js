@@ -14,6 +14,7 @@ angular.module('Criterias')
           'sncf_count' : 'SNCF',
           'tram_count' : 'Tram',
           'cyclelane_length' : 'Vélo voies',
+          'name': 'Nom',
     };
 
     var dimensions = {       
