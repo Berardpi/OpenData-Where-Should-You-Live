@@ -43,15 +43,15 @@ angular.module('openDataApp')
 
       $scope.loadData = function() {
           MongoApiSvc.relativeLoadPerNeighborhood($scope.data.dimensions).then(function (success) {
-
               if(success != undefined && success.length > 0 && CriteriasSvc.isThereADimensionSelected()){
+                  $scope.layers.overlays = {};
                   $scope.weight.min = _.minBy(success, function (o) {
                       return o.properties.weight;
                   }).properties.weight;
                   $scope.weight.max = _.maxBy(success, function (o) {
                       return o.properties.weight;
                   }).properties.weight;
-                angular.extend($scope.layers.overlays, {
+                  angular.extend($scope.layers.overlays, {
                     neighborhood: {
                         name:'Quartier',
                         type: 'geoJSONShape',
@@ -63,34 +63,108 @@ angular.module('openDataApp')
                           }
                       }
                   });
-
-                  /*var grenoble = $scope.neighborhood.data[0];
-                   _.forEach($scope.neighborhood.data, function(n) {
-                   grenoble = turf.union(grenoble, n);
-                   console.log(grenoble);
-                   });*/
-                  MongoApiSvc.load("gsm").then(function(data) {
-                      angular.extend($scope.layers.overlays, {
-                          gsm: {
-                              name:'GSM',
-                              type: 'geoJSONAwesomeMarker',
-                              data: data,
-                              visible: false,
-                              icon: {
-                                  icon: 'heart',
-                                  markerColor: 'red',
-                                  prefix: 'glyphicon'
+                  $scope.layers.overlays.neighborhood.doRefresh = true;
+                  if($scope.data.dimensions.gsm_2g_count || $scope.data.dimensions.gsm_3g_count || $scope.data.dimensions.gsm_4g_count ) {
+                      MongoApiSvc.load("gsm").then(function (data) {
+                          var data_4G = [];
+                          var data_3G = [];
+                          var data_2G = [];
+                          _.forEach(data, function(d){
+                              if(d.properties.ANT_4G == "OUI"){
+                                  data_4G.push(d);
+                              } else if(d.properties.ANT_3G == "OUI"){
+                                  data_3G.push(d);
+                              } else {
+                                  data_2G.push(d);
                               }
+                          });
+                          if($scope.data.dimensions.gsm_2g_count) {
+                              angular.extend($scope.layers.overlays, {
+                                  gsm_2G: $scope.createLayer("GSM 2G", data_2G)
+                            });
                           }
-                      });
+                          if($scope.data.dimensions.gsm_3g_count) {
+                              angular.extend($scope.layers.overlays, {
+                                  gsm_3G:  $scope.createLayer("GSM 3G", data_3G)
+                              });
+                          }
+                          if($scope.data.dimensions.gsm_4g_count) {
+                              angular.extend($scope.layers.overlays, {
+                                  gsm_4G:  $scope.createLayer("GSM 4G", data_4G)
+                              });
+                          }
 
-                  });
-                $scope.neighborhood.style = getStyle;
+                      });
+                  }
+                  if($scope.data.dimensions.autocar_count || $scope.data.dimensions.bus_count || $scope.data.dimensions.sncf_count || $scope.data.dimensions.tram_count ) {
+                      MongoApiSvc.load("stop").then(function (data) {
+                          var tram = [];
+                          var bus  = [];
+                          var sncf  = [];
+                          var autocar  = [];
+                          _.forEach(data, function(d){
+                              var lines = d.properties.LIGNESARRET.split(',');
+                              _.each(lines, function(line) {
+                                  if (line.match(/SEM_[ABCDE]/)) {
+                                      tram.push(d);
+                                  } else if (_.startsWith(line, 'SEM_')) {
+                                      bus.push(d);
+                                  } else if (_.startsWith(line, 'SNC_')) {
+                                      sncf.push(d);
+                                  } else {
+                                      autocar.push(d);
+                                  }
+                              });
+                          });
+                          if($scope.data.dimensions.autocar_count) {
+                              angular.extend($scope.layers.overlays, {
+                                  autocar: $scope.createLayer("Autocar", autocar)
+                              });
+                          }
+                          if($scope.data.dimensions.bus_count) {
+                              angular.extend($scope.layers.overlays, {
+                                  bus:  $scope.createLayer("Bus", bus)
+                              });
+                          }
+                          if($scope.data.dimensions.sncf_count) {
+                              angular.extend($scope.layers.overlays, {
+                                  gare:  $scope.createLayer("Gare", sncf)
+                              });
+                          }
+                          if($scope.data.dimensions.tram_count) {
+                              angular.extend($scope.layers.overlays, {
+                                  tram:  $scope.createLayer("Tram", tram)
+                              });
+                          }
+
+                      });
+                  }
+                  if($scope.data.dimensions.citelib_count) {
+                      MongoApiSvc.load("citelib").then(function (data) {
+                              angular.extend($scope.layers.overlays, {
+                                  citeLibs: $scope.createLayer("CiteLibs", data)
+                          });
+                      });
+                  }
               } else {
                   angular.extend($scope.layers.overlays = {});
               }
           });
       }
+
+      $scope.createLayer = function(name, data){
+            return {
+                  name: name,
+                  type: 'geoJSONAwesomeMarker',
+                  data: data,
+                  visible: false,
+                  icon: {
+                      icon: 'heart',
+                      markerColor: 'red',
+                      prefix: 'glyphicon'
+                  }
+              }
+      };
 
        angular.extend($scope, {
            defaults: {
@@ -124,13 +198,6 @@ angular.module('openDataApp')
        });
 
       var getStyle = function(feature){
-          if(feature.properties.type_amenagement == "Piste cyclable"){
-              return {
-                  weight: 2,
-                  opacity: 1,
-                  color: "black"
-              }
-          } else {
               return {
                   fillColor: getColorArea(feature.properties.weight),
                   weight: 1,
@@ -139,7 +206,6 @@ angular.module('openDataApp')
                   dashArray: '3',
                   fillOpacity: 0.5
               };
-          }
       };
 
       var getOnEachFeature = function(feature, layer){
