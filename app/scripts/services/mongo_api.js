@@ -13,8 +13,8 @@ angular.module('MongoApi', ['Criterias'])
 
     service.loadInPolygon = function(collection, polygon) {
       var params = 'where={\"geometry\": {\"$geoWithin\": {\"$geometry\": ' + JSON.stringify(polygon) + '}}}';
-      return $http.get(service.route + '?' + params).then(function(success) {
-        return success.data._items;
+      return $http.get(service.route + collection + '?' + params).then(function(success) {
+          return success.data._items;
       });
     };
 

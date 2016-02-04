@@ -64,9 +64,10 @@ angular.module('openDataApp')
                       }
                   });
                   $scope.layers.overlays.neighborhood.doRefresh = true;
-                  //MongoApiSvc.load("grenoble").then(function (grenoble){
+                  MongoApiSvc.load("grenoble").then(function (grenoble){
                       if($scope.data.dimensions.gsm_2g_count || $scope.data.dimensions.gsm_3g_count || $scope.data.dimensions.gsm_4g_count ) {
-                          MongoApiSvc.load("gsm").then(function (data) {
+                          MongoApiSvc.loadInPolygon("gsm", grenoble[0].geometry).then(function (data) {
+                              console.log(data);
                               var data_4G = [];
                               var data_3G = [];
                               var data_2G = [];
@@ -98,7 +99,7 @@ angular.module('openDataApp')
                           });
                       }
                       if($scope.data.dimensions.autocar_count || $scope.data.dimensions.bus_count || $scope.data.dimensions.sncf_count || $scope.data.dimensions.tram_count ) {
-                          MongoApiSvc.load("stop").then(function (data) {
+                          MongoApiSvc.loadInPolygon("stop", grenoble[0].geometry).then(function (data) {
                               var tram = [];
                               var bus  = [];
                               var sncf  = [];
@@ -141,27 +142,27 @@ angular.module('openDataApp')
                           });
                       }
                       if($scope.data.dimensions.citelib_count) {
-                          MongoApiSvc.load("citelib").then(function (data) {
+                          MongoApiSvc.loadInPolygon("citelib", grenoble[0].geometry).then(function (data) {
                               angular.extend($scope.layers.overlays, {
                                   citeLibs: $scope.createLayer("CiteLibs", data, "automobile", "red", "white")
                               });
                           });
                       }
                       if($scope.data.dimensions.supermarket_count) {
-                          MongoApiSvc.load("supermarket").then(function (data) {
+                          MongoApiSvc.loadInPolygon("supermarket", grenoble[0].geometry).then(function (data) {
                               angular.extend($scope.layers.overlays, {
                                   supermarket: $scope.createLayer("Supermarchés", data, "shopping-cart", "green", "white")
                               });
                           });
                       }
                       if($scope.data.dimensions.restaurant_count) {
-                          MongoApiSvc.load("restaurant").then(function (data) {
+                          MongoApiSvc.loadInPolygon("restaurant", grenoble[0].geometry).then(function (data) {
                               angular.extend($scope.layers.overlays, {
                                   restaurant: $scope.createLayer("Restaurants", data, "coffee", "darkgreen", "white")
                               });
                           });
                       }
-                  //})
+                  })
               } else {
                   angular.extend($scope.layers.overlays = {});
               }
