@@ -8,7 +8,7 @@
  * Controller of the openDataApp
  */
 angular.module('openDataApp')
-  .controller('MainCtrl', function ($scope, $window, MongoApiSvc, CriteriasSvc) {
+  .controller('MainCtrl', function ($scope, $window,leafletGeoJsonEvents, leafletMapEvents,  MongoApiSvc, CriteriasSvc) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -54,7 +54,8 @@ angular.module('openDataApp')
                         data: success,
                         visible: true,
                         layerOptions: {
-                            style: getStyle
+                            style: getStyle,
+                            onEachFeature: getOnEachFeature
                           }
                       }
                   });
@@ -81,6 +82,8 @@ angular.module('openDataApp')
 
                   });
                 $scope.neighborhood.style = getStyle;
+              } else {
+                  angular.extend($scope.layers.overlays = {});
               }
           });
       }
@@ -134,6 +137,29 @@ angular.module('openDataApp')
               };
           }
       };
+
+      var getOnEachFeature = function(feature, layer){
+          layer.on('click', function(e) {
+              if ($scope.selectedNeightborhood) {
+                  $scope.selectedNeightborhood.setStyle({
+                      weight: 1,
+                      color: "white"
+                  });
+              }
+              $scope.selectedNeightborhood = e.target;
+              var center = turf.centroid($scope.selectedNeightborhood.feature);
+              $scope.center.lat = center.geometry.coordinates[1];
+              $scope.center.lng = center.geometry.coordinates[0];
+              e.target.setStyle({
+                  weight: 4,
+                  color: "green"
+              });
+          });
+          layer.on('mouseover', function(e) {
+              $scope.overNeightborhood = feature;
+          });
+          };
+
       var getColorArea = function(weight) {
         var inter = ($scope.weight.max - $scope.weight.min)/18;
         for( var i=0; i<19; i++){
@@ -142,27 +168,7 @@ angular.module('openDataApp')
             }
         }
       }
-      $scope.$on("leafletDirectivePath.click", function(ev, leafletPayload) {
-          if(leafletPayload.leafletObject.feature.geometry.type == "Polygon") {
-              if ($scope.selectedNeightborhood) {
-                  $scope.selectedNeightborhood.setStyle({
-                      weight: 1,
-                      color: "white"
-                  });
-              }
-              $scope.selectedNeightborhood = leafletPayload.leafletObject;
-              var center = turf.centroid($scope.selectedNeightborhood.feature);
-              $scope.center.lat = center.geometry.coordinates[1];
-              $scope.center.lng = center.geometry.coordinates[0];
-              leafletPayload.leafletObject.setStyle({
-                  weight: 4,
-                  color: "green"
-              });
-          }
-      });
-      $scope.$on("leafletDirectivePath.mouseover", function(ev, leafletPayload) {
-          $scope.overNeightborhood = leafletPayload.leafletObject.feature;
-      });
 
       $scope.loadData();
+
   });
