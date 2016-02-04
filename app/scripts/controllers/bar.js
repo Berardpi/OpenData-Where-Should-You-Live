@@ -17,5 +17,4 @@ angular.module('Bar', ['MongoApi'])
 
     $scope.loadData();
 
-
   });
