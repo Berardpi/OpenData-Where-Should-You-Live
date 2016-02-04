@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module('Bar', ['MongoApi'])
-  .controller('BarCtrl', function ($scope, MongoApiSvc) {
+  .controller('BarCtrl', function ($scope, $routeParams, MongoApiSvc) {
 
     $scope.data = [];
 
@@ -10,10 +10,14 @@ angular.module('Bar', ['MongoApi'])
 
       MongoApiSvc.load('neighborhood').then(function(data){
         $scope.data = data;
-        $scope.currentNeighborhood = $scope.data[0];
+        // if ($routeParams.nghb) {
+        //   console.log($routeParams.nghb);
+        //   });
+        // } else {
+          $scope.currentNeighborhood = $scope.data[0];
+        // }
       });
     }
-
 
     $scope.loadData();
 

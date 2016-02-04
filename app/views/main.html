@@ -7,29 +7,33 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Bubble chart</h3>
+      <h3 class="panel-title">Carte</h3>
     </div>
     <div class="panel-body">
       <leaflet layers="layers" legend="legend" defaults="defaults" center="center" height="480px" width="100%" markers="markers" ></leaflet>
       <div class="overNeightborhood">
         {{ overNeightborhood.properties.name || 'Pas de quartier'}}
       </div>
-      <div class="selectedNeightborhood">
-        {{ selectedNeightborhood.feature.properties.name || 'Pas de quartier selectionné'}}
-      </div>
     </div>
   </div>
 
   <div class="panel panel-default" ng-show="neighborhoodData">
-    <div class="panel-heading">
-      <h3 class="panel-title">{{selectedNeightborhood.feature.properties.name}}</h3>
+    <div class="panel-heading col-md-12">
+      <div class='col-md-11'>
+        <h2 class="panel-title">{{selectedNeightborhood.feature.properties.name}}</h2>
+      </div>
+      <div class='col-md-1'>
+        <a ng-href="#/bar?nghb={{selectedNeightborhood.feature.properties.name}}" class='fa fa-bar-chart btn btn-default' data-toggle="tooltip" data-placement="top" title="Show bar graph for {{selectedNeightborhood.feature.properties.name}}"></a>
+      </div>
     </div>
-    <div class="panel-body">
+    <div class="panel-body details">
+    <br/>
     <ul>
-      <li ng-repeat="(key, value) in data.dimensions" ng-if="key != 'name'">
-        {{getTrad(key)}} : {{neighborhoodData.properties[key]}}{{getUnite(key)}}
-        <!-- {{value}} -->
-      </li>
+      <div class='col-md-6' ng-repeat="(key, value) in data.dimensions" ng-if="key != 'name'">
+        <li>
+          <a ng-href="#/bubble?criteria={{key}}" class="bubble btn btn-default fa fa-pie-chart fa-2x" data-toggle="tooltip" data-placement="left" title="Show bubble graph for {{getTrad(key)}}"></a> {{getTrad(key)}} : {{neighborhoodData.properties[key]}}{{getUnite(key)}}
+        </li>
+      </div>
     </ul>
     </div>
   </div>

@@ -238,3 +238,22 @@ svg {
     display: none;
   }
 }
+
+// Main page
+.details {
+  ul {
+     list-style-type: none;
+     padding: 0;
+
+     .bubble {
+        padding: 0;
+        margin-right: 5px;
+        margin-top: 10px;
+     }
+  }
+}
+
+.parralel_coord_btn {
+  float: right;
+  margin-top:-20px;
+}

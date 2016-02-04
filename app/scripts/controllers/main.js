@@ -64,104 +64,121 @@ angular.module('openDataApp')
                       }
                   });
                   $scope.layers.overlays.neighborhood.doRefresh = true;
-                  if($scope.data.dimensions.gsm_2g_count || $scope.data.dimensions.gsm_3g_count || $scope.data.dimensions.gsm_4g_count ) {
-                      MongoApiSvc.load("gsm").then(function (data) {
-                          var data_4G = [];
-                          var data_3G = [];
-                          var data_2G = [];
-                          _.forEach(data, function(d){
-                              if(d.properties.ANT_4G == "OUI"){
-                                  data_4G.push(d);
-                              } else if(d.properties.ANT_3G == "OUI"){
-                                  data_3G.push(d);
-                              } else {
-                                  data_2G.push(d);
-                              }
-                          });
-                          if($scope.data.dimensions.gsm_2g_count) {
-                              angular.extend($scope.layers.overlays, {
-                                  gsm_2G: $scope.createLayer("GSM 2G", data_2G)
-                            });
-                          }
-                          if($scope.data.dimensions.gsm_3g_count) {
-                              angular.extend($scope.layers.overlays, {
-                                  gsm_3G:  $scope.createLayer("GSM 3G", data_3G)
-                              });
-                          }
-                          if($scope.data.dimensions.gsm_4g_count) {
-                              angular.extend($scope.layers.overlays, {
-                                  gsm_4G:  $scope.createLayer("GSM 4G", data_4G)
-                              });
-                          }
-
-                      });
-                  }
-                  if($scope.data.dimensions.autocar_count || $scope.data.dimensions.bus_count || $scope.data.dimensions.sncf_count || $scope.data.dimensions.tram_count ) {
-                      MongoApiSvc.load("stop").then(function (data) {
-                          var tram = [];
-                          var bus  = [];
-                          var sncf  = [];
-                          var autocar  = [];
-                          _.forEach(data, function(d){
-                              var lines = d.properties.LIGNESARRET.split(',');
-                              _.each(lines, function(line) {
-                                  if (line.match(/SEM_[ABCDE]/)) {
-                                      tram.push(d);
-                                  } else if (_.startsWith(line, 'SEM_')) {
-                                      bus.push(d);
-                                  } else if (_.startsWith(line, 'SNC_')) {
-                                      sncf.push(d);
+                  //MongoApiSvc.load("grenoble").then(function (grenoble){
+                      if($scope.data.dimensions.gsm_2g_count || $scope.data.dimensions.gsm_3g_count || $scope.data.dimensions.gsm_4g_count ) {
+                          MongoApiSvc.load("gsm").then(function (data) {
+                              var data_4G = [];
+                              var data_3G = [];
+                              var data_2G = [];
+                              _.forEach(data, function(d){
+                                  if(d.properties.ANT_4G == "OUI"){
+                                      data_4G.push(d);
+                                  } else if(d.properties.ANT_3G == "OUI"){
+                                      data_3G.push(d);
                                   } else {
-                                      autocar.push(d);
+                                      data_2G.push(d);
                                   }
                               });
-                          });
-                          if($scope.data.dimensions.autocar_count) {
-                              angular.extend($scope.layers.overlays, {
-                                  autocar: $scope.createLayer("Autocar", autocar)
-                              });
-                          }
-                          if($scope.data.dimensions.bus_count) {
-                              angular.extend($scope.layers.overlays, {
-                                  bus:  $scope.createLayer("Bus", bus)
-                              });
-                          }
-                          if($scope.data.dimensions.sncf_count) {
-                              angular.extend($scope.layers.overlays, {
-                                  gare:  $scope.createLayer("Gare", sncf)
-                              });
-                          }
-                          if($scope.data.dimensions.tram_count) {
-                              angular.extend($scope.layers.overlays, {
-                                  tram:  $scope.createLayer("Tram", tram)
-                              });
-                          }
+                              if($scope.data.dimensions.gsm_2g_count) {
+                                  angular.extend($scope.layers.overlays, {
+                                      gsm_2G: $scope.createLayer("GSM 2G", data_2G, "rss", "darkred", "#FFFF00")
+                                  });
+                              }
+                              if($scope.data.dimensions.gsm_3g_count) {
+                                  angular.extend($scope.layers.overlays, {
+                                      gsm_3G:  $scope.createLayer("GSM 3G", data_3G, "rss", "darkred", "#FFA500")
+                                  });
+                              }
+                              if($scope.data.dimensions.gsm_4g_count) {
+                                  angular.extend($scope.layers.overlays, {
+                                      gsm_4G:  $scope.createLayer("GSM 4G", data_4G, "rss", "darkred", "#FF0000")
+                                  });
+                              }
 
-                      });
-                  }
-                  if($scope.data.dimensions.citelib_count) {
-                      MongoApiSvc.load("citelib").then(function (data) {
-                              angular.extend($scope.layers.overlays, {
-                                  citeLibs: $scope.createLayer("CiteLibs", data)
                           });
-                      });
-                  }
+                      }
+                      if($scope.data.dimensions.autocar_count || $scope.data.dimensions.bus_count || $scope.data.dimensions.sncf_count || $scope.data.dimensions.tram_count ) {
+                          MongoApiSvc.load("stop").then(function (data) {
+                              var tram = [];
+                              var bus  = [];
+                              var sncf  = [];
+                              var autocar  = [];
+                              _.forEach(data, function(d){
+                                  var lines = d.properties.LIGNESARRET.split(',');
+                                  _.each(lines, function(line) {
+                                      if (line.match(/SEM_[ABCDE]/)) {
+                                          tram.push(d);
+                                      } else if (_.startsWith(line, 'SEM_')) {
+                                          bus.push(d);
+                                      } else if (_.startsWith(line, 'SNC_')) {
+                                          sncf.push(d);
+                                      } else {
+                                          autocar.push(d);
+                                      }
+                                  });
+                              });
+                              if($scope.data.dimensions.autocar_count) {
+                                  angular.extend($scope.layers.overlays, {
+                                      autocar: $scope.createLayer("Autocar", autocar, "bus", "blue", "white")
+                                  });
+                              }
+                              if($scope.data.dimensions.bus_count) {
+                                  angular.extend($scope.layers.overlays, {
+                                      bus:  $scope.createLayer("Bus", bus, "bus", "purple", "white")
+                                  });
+                              }
+                              if($scope.data.dimensions.sncf_count) {
+                                  angular.extend($scope.layers.overlays, {
+                                      gare:  $scope.createLayer("Gare", sncf, "train", "darkpuple", "white")
+                                  });
+                              }
+                              if($scope.data.dimensions.tram_count) {
+                                  angular.extend($scope.layers.overlays, {
+                                      tram:  $scope.createLayer("Tram", tram, "subway", "cadetblue", "white")
+                                  });
+                              }
+
+                          });
+                      }
+                      if($scope.data.dimensions.citelib_count) {
+                          MongoApiSvc.load("citelib").then(function (data) {
+                              angular.extend($scope.layers.overlays, {
+                                  citeLibs: $scope.createLayer("CiteLibs", data, "automobile", "red", "white")
+                              });
+                          });
+                      }
+                      if($scope.data.dimensions.supermarket_count) {
+                          MongoApiSvc.load("supermarket").then(function (data) {
+                              angular.extend($scope.layers.overlays, {
+                                  citeLibs: $scope.createLayer("Supermarchés", data, "shopping-cart", "green", "white")
+                              });
+                          });
+                      }
+                      if($scope.data.dimensions.restaurant_count) {
+                          MongoApiSvc.load("restaurant").then(function (data) {
+                              angular.extend($scope.layers.overlays, {
+                                  citeLibs: $scope.createLayer("Restaurants", data, "coffee", "darkgreen", "white")
+                              });
+                          });
+                      }
+                  //})
               } else {
                   angular.extend($scope.layers.overlays = {});
               }
           });
       }
 
-      $scope.createLayer = function(name, data){
+      $scope.createLayer = function(name, data, icon, color, iconColor){
             return {
                   name: name,
                   type: 'geoJSONAwesomeMarker',
                   data: data,
                   visible: false,
                   icon: {
-                      icon: 'heart',
-                      markerColor: 'red',
-                      prefix: 'glyphicon'
+                      icon: icon,
+                      markerColor: color,
+                      prefix: 'fa',
+                      iconColor : iconColor
                   }
               }
       };
