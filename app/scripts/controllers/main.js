@@ -40,7 +40,9 @@ angular.module('openDataApp')
 
       $scope.loadData = function() {
           MongoApiSvc.relativeLoadPerNeighborhood($scope.data.dimensions).then(function (success) {
-              if(success != undefined && success.length > 0 && success[0].properties.weight){
+              _.findIndex($scope.data.dimensions, 'active');
+
+              if(success != undefined && success.length > 0 && CriteriasSvc.isThereADimensionSelected()){
                   $scope.weight.min = _.minBy(success, function (o) {
                       return o.properties.weight;
                   }).properties.weight;
