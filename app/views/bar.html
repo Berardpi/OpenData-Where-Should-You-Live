@@ -1,6 +1,6 @@
 <section>
   <header class="page-header">
-    <h1>Détail sur un quartier: <small>{{currentNeighborhood.properties.SDEC_LIBEL}}</small></h1>
+    <h1>Détail sur un quartier: <small><select ng-model="currentNeighborhood" ng-options="d as d.properties.SDEC_LIBEL for d in data"></select></small></h1>
   </header>
 
   <div class="panel panel-default">

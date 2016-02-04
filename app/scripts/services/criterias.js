@@ -16,6 +16,7 @@ angular.module('Criterias')
           'cyclelane_length' : 'Vélo voies',
           'supermarket_count' : 'Supermarchés',
           'restaurant_count' : 'Restaurants',
+          'name': 'Nom',
     };
 
     var dimensions = {       
