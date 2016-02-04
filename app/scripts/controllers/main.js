@@ -138,4 +138,5 @@ angular.module('openDataApp')
           $scope.overNeightborhood = leafletPayload.leafletObject.feature;
       });
 
+      $scope.loadData();
   });
