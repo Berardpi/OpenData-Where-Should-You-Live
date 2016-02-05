@@ -248,12 +248,23 @@ svg {
      .bubble {
         padding: 0;
         margin-right: 5px;
-        margin-top: 10px;
+        margin-top: 5px;
+        margin-bottom:5px;
      }
   }
 }
 
 .parralel_coord_btn {
   float: right;
-  margin-top:-20px;
+  margin-top: -20px;
+}
+
+.parameters {
+  margin-top:5px!important;
+  .checkbox{
+  margin-top:0px !important;
+  }
+  .radio {
+    margin-top: 0px !important;
+  }
 }
