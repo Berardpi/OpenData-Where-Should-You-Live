@@ -45,3 +45,17 @@ You can now test a REST call on your eve serveur:
 ```shell
 curl http://127.0.0.1:5000/cyclelane
 ```
+
+## Screenshots
+#### Contextualized map
+![alt tag](blob:https://drive.google.com/b5f79997-26c3-4131-8b38-9494d7fd353f)
+![alt tag](blob:https://drive.google.com/9d657285-a729-4cc6-acaa-9f282e2a66cb)
+
+#### Single-criterion comparison (1 criterion : n neighborhoods)
+![alt tag](blob:https://drive.google.com/2fdcb6c3-cb5d-4849-86ce-4bb1f8fff07c)
+
+#### Multi-criteria comparison (n criteria : n neighborhoods)
+![alt tag](blob:https://drive.google.com/d4180a78-a6f1-431b-854a-33c11a70196e)
+
+#### Neighborhood details (n criteria : 1 neighborhood)
+![alt tag](blob:https://drive.google.com/8d798644-2273-467f-8045-22d00682d9f2)
