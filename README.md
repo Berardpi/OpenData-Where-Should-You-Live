@@ -59,3 +59,4 @@ curl http://127.0.0.1:5000/cyclelane
 
 #### Neighborhood details (n criteria : 1 neighborhood)
 ![alt tag](https://cloud.githubusercontent.com/assets/631898/12843546/702f8fc8-cbfa-11e5-9234-42f793d53a13.png)
+
