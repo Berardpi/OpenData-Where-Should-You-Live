@@ -45,6 +45,8 @@ You can now test a REST call on your eve serveur:
 ```shell
 curl http://127.0.0.1:5000/cyclelane
 ```
+## Video 
+[![Alt text for your video](http://img.youtube.com/vi/rY4qqBBxDiI/0.jpg)](https://www.youtube.com/embed/rY4qqBBxDiI)
 
 ## Screenshots
 #### Contextualized map
