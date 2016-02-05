@@ -2,6 +2,11 @@
 
 This is a small application using a mongodb database, sets of open data and 3D.js to help the user find the Grenoble neighborhood in which he'd like to live.
 
+/!\ To run the application, you need to run BOTH the client and the server (run.py + mongo).
+
+## Dependencies
+To install the project, you need to have bower, node, npm, mongoDB, ruby (for compass), python, pip installed on your machine.
+
 ## Client 
 
 ### Set up of the application
@@ -9,12 +14,7 @@ Run `bower install` and `npm install` to install the dependencies.
 
 ### Build & development
 
-Run `grunt` for building and `grunt serve` for preview.
-
-### Testing
-
-Running `grunt test` will run the unit tests with karma.
-
+Run `grunt serve` to launch the front-end of the application.
 
 ## Server
 

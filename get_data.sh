@@ -68,6 +68,7 @@ rm gsm.geojson
  rm grenoble.{osm,geojson}
 
 # Process data in node to accelerate all futur requests
+echo "processing data (~10 secs) ..."
 timeout 10s node process_data.js
 
 

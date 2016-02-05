@@ -15,7 +15,7 @@ angular.module('ParallelCoordinates')
 
         var dimensions;
 
-        var margin = {top: 30, right: 0, bottom: 10, left: 0},
+        var margin = {top: 30, right: 0, bottom: 10, left: 10},
           width = 650 - margin.left - margin.right,
           height = 300 - margin.top - margin.bottom;
 

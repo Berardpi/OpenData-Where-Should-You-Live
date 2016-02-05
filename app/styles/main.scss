@@ -106,7 +106,7 @@ body {
 * Bubble Graph 
 **/
 
-#bubbleGraph{
+#bubbleGraph, #parallelCoordinatesGraph{
   margin: auto;
   display: flex;
 }
@@ -260,7 +260,7 @@ svg {
 
 .parralel_coord_btn {
   float: right;
-  margin-top:-20px;
+  margin-top:-25px;
 }
 
 .details-map li{
@@ -280,4 +280,9 @@ a img, a{
     margin-top: 0px !important;
   }
 
+}
+
+.navbar-brand{
+  font-size: 1em !important;
+  font-weight: bold !important;
 }
