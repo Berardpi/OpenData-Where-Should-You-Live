@@ -203,7 +203,7 @@ angular.module('openDataApp')
                   name: name,
                   type: 'geoJSONAwesomeMarker',
                   data: data,
-                  visible: true,
+                  visible: false,
                   icon: {
                       icon: icon,
                       markerColor: color,
