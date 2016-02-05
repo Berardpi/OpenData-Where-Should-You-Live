@@ -98,6 +98,10 @@ body {
   margin-top: 10px;
 }
 
+.navbar-default .navbar-nav>li>a {
+    font-size: 0.9em;
+}
+
 /**
 * Bubble Graph 
 **/
@@ -124,7 +128,7 @@ body {
       
       .checkbox, .radio{
         flex-grow: 1;
-        /* flex-basis: 20%; */
+        flex-basis: 20%; 
       }
     }
   }
@@ -256,4 +260,12 @@ svg {
 .parralel_coord_btn {
   float: right;
   margin-top:-20px;
+}
+
+.details-map li{
+  list-style-type: none;
+}
+
+a img, a{
+  border: none;
 }

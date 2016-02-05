@@ -8,6 +8,9 @@ angular.module('Criterias', [])
       	data: '=data',
       	dimensions: '=dimensions',
       	load: '&',
+         refLink: '@',
+         refIcon: '@',
+         refTxt : '@'
       },
       templateUrl: '../../views/criterias.html',
       link: function(scope, elem, attrs){
@@ -20,4 +23,4 @@ angular.module('Criterias', [])
 		    scope.dimensions = CriteriasSvc.getDimensions();
       }
    }
-});
+})

@@ -1,9 +1,11 @@
+
 <section>
   <header>
     <h1>Carte contextualisée</h1>
   </header>
 
-  <criterias data="data.weight" dimensions="data.dimensions" formtype="checkbox" load="loadData()"></criterias>
+  <criterias data="data.weight" dimensions="data.dimensions" formtype="checkbox" load="loadData()" ref-link="#/parallel_coordinates" ref-txt="Comparaison multi critères" ref-icon="../images/parallel.png"></criterias>
+
 
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -29,9 +31,12 @@
     <div class="panel-body details">
     <br/>
     <ul>
-      <div class='col-md-6' ng-repeat="(key, value) in data.dimensions" ng-if="key != 'name'">
-        <li>
-          <a ng-href="#/bubble?criteria={{key}}" class="bubble btn btn-default fa fa-pie-chart fa-2x" data-toggle="tooltip" data-placement="left" title="Show bubble graph for {{getTrad(key)}}"></a> {{getTrad(key)}} : {{neighborhoodData.properties[key]}}{{getUnite(key)}}
+      <div class='col-md-6 details-map' ng-repeat="(key, value) in data.dimensions" ng-if="key != 'name'">
+        <li><!-- fa fa-pie-chart fa-2x -->
+          {{getTrad(key)}} : {{neighborhoodData.properties[key]}}{{getUnite(key)}}
+          <a ng-href="#/bubble?criteria={{key}}" class="bubble btn btn-default " data-toggle="tooltip" data-placement="left" title="Show bubble graph for {{getTrad(key)}}"> 
+            <img src="../../images/bubble.png" alt="" style="padding: 5px;"/>
+          </a>
         </li>
       </div>
     </ul>

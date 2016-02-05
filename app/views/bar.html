@@ -1,11 +1,20 @@
 <section>
   <header class="page-header">
-    <h1>Détail sur un quartier: <small><select ng-model="currentNeighborhood" ng-options="d as d.properties.SDEC_LIBEL for d in data"></select></small></h1>
+    <h1>Détails sur un quartier:</h1>
   </header>
+
+   <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Sélection du quartier</h3>
+    </div>
+    <div class="panel-body">
+        <select class="form-control" ng-model="currentNeighborhood" ng-options="d as d.properties.SDEC_LIBEL for d in data"></select>
+    </div>
+  </div>
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Bar chart</h3>
+      <h3 class="panel-title">Visualisation par quartier</h3>
     </div>
     <div class="panel-body">
         <div bar chart-data="currentNeighborhood"></div>

@@ -1,7 +1,17 @@
   <div id="bubble-criterias" class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">Critères</h3>
-        <a ng-href="#/parallel_coordinates" class='btn btn-xs btn-default btn-info parralel_coord_btn' data-toggle="tooltip" data-placement="top" title="Go to parallel coordinates chart">Coordonnées parallèles</a>
+
+        <a ng-if="refLink !== undefined"
+        ng-href="{{refLink}}" 
+        class='btn btn-xs btn-default btn-info parralel_coord_btn' 
+        data-toggle="tooltip" 
+        data-placement="top" 
+        title="Go to parallel coordinates chart">
+        <img  ng-if="refIcon !== undefined" src="{{refIcon}}" alt="" />
+          {{refTxt}}
+        </a>
+
     </div>
     <div class="panel-body">
         <form class="parameters" action="demo_form.asp" method="get">
