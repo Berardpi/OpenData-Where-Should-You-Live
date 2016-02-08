@@ -30,6 +30,7 @@ Then run the get_local_data script to populate the db. Data are fetched from the
 ```
 
 #### Installing python server
+
 The server will serve the html AND will be used as a REST API.
 
 To install eve run:
@@ -38,6 +39,7 @@ pip install eve
 ```
 
 ### Launching the app
+
 Once everything is installed, you just have to launch the DB and the python server.
 
 To launch a mongo instance : 
