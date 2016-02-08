@@ -66,7 +66,6 @@ angular.module('openDataApp')
                   MongoApiSvc.load("grenoble").then(function (grenoble){
                       if($scope.data.dimensions.gsm_2g_count || $scope.data.dimensions.gsm_3g_count || $scope.data.dimensions.gsm_4g_count ) {
                           MongoApiSvc.loadInPolygon("gsm", grenoble[0].geometry).then(function (data) {
-                              console.log(data);
                               var data_4G = [];
                               var data_3G = [];
                               var data_2G = [];

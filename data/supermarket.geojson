@@ -1,0 +1,1489 @@
+"features": [
+{
+  "type": "Feature",
+  "id": "node/171759034",
+  "properties": {
+    "name": "Lidl",
+    "operator": "Lidl",
+    "shop": "supermarket",
+    "id": "node/171759034"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      6.0116328,
+      45.4345638
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/293998179",
+  "properties": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "20",
+    "addr:postcode": "38000",
+    "addr:street": "Rue de Strasbourg",
+    "contact:phone": "+33 4 76 47 10 46",
+    "name": "Spar",
+    "opening_hours": "Mo-Sa 07:00-21:00; Su 08:30-13:00",
+    "operator": "Spar",
+    "shop": "supermarket",
+    "source": "ticket de caisss (9/2012)",
+    "id": "node/293998179"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7318997,
+      45.1864285
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/298872652",
+  "properties": {
+    "level": "-1",
+    "name": "Casino",
+    "operator": "Casino",
+    "shop": "supermarket",
+    "source": "survey",
+    "wheelchair": "yes",
+    "id": "node/298872652"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7206455,
+      45.1884288
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/315860417",
+  "properties": {
+    "name": "Spar",
+    "operator": "Spar",
+    "shop": "supermarket",
+    "id": "node/315860417"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      6.1246727,
+      45.0115873
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/316121253",
+  "properties": {
+    "created_by": "Potlatch 0.10f",
+    "shop": "supermarket",
+    "id": "node/316121253"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7820546,
+      44.9238126
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/316490074",
+  "properties": {
+    "name": "Géant Casino",
+    "operator": "Casino",
+    "shop": "supermarket",
+    "id": "node/316490074"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.6724562,
+      45.1985787
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/336403835",
+  "properties": {
+    "name": "Spar",
+    "operator": "Spar",
+    "shop": "supermarket",
+    "id": "node/336403835"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      6.121385,
+      45.0040688
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/391489782",
+  "properties": {
+    "operator": "Franprix",
+    "shop": "supermarket",
+    "source": "survey",
+    "id": "node/391489782"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7220499,
+      45.18854
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/493500270",
+  "properties": {
+    "addr:postcode": "38320",
+    "alt_name": "Centre commercial de Tavernolles (Les Hauts du Moulin)",
+    "name": "Le Relais des Mousquetaires",
+    "operator": "Groupement des Mousquetaires",
+    "shop": "supermarket",
+    "id": "node/493500270"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7724189,
+      45.1360504
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/497126644",
+  "properties": {
+    "name": "Intermarché",
+    "operator": "Groupement des Mousquetaires",
+    "shop": "supermarket",
+    "id": "node/497126644"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7620139,
+      45.0841201
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/497126656",
+  "properties": {
+    "name": "Netto",
+    "shop": "supermarket",
+    "id": "node/497126656"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7683527,
+      45.0815582
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/529100318",
+  "properties": {
+    "name": "Leader Market",
+    "operator": "Leader Price",
+    "shop": "supermarket",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour :2009",
+    "id": "node/529100318"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7511342,
+      45.1633753
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/529131192",
+  "properties": {
+    "name": "Relais des Mousquetaires",
+    "operator": "Groupement des Mousquetaires",
+    "shop": "supermarket",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 06-03-2009",
+    "id": "node/529131192"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.9308345,
+      45.3242045
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/615068585",
+  "properties": {
+    "name": "U express",
+    "operator": "Système U",
+    "shop": "supermarket",
+    "source": "survey 2013",
+    "wheelchair": "yes",
+    "id": "node/615068585"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      6.1243782,
+      45.0126533
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/652825274",
+  "properties": {
+    "contact:phone": "+33 4 76 96 20 09",
+    "contact:website": "monoprix.fr",
+    "name": "Monoprix",
+    "opening_hours": "Mo-Sa 08:30-21:00",
+    "operator": "Groupe Casino",
+    "shop": "supermarket",
+    "wheelchair": "yes",
+    "wikipedia": "fr:Monoprix (France)",
+    "id": "node/652825274"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7153388,
+      45.1805534
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/700239853",
+  "properties": {
+    "addr:city": "Saint-Martin-d'Hères",
+    "addr:country": "FR",
+    "addr:housenumber": "13",
+    "addr:postcode": "38400",
+    "addr:street": "Place du 24 Avril 1915",
+    "contact:phone": "+33 4 76 00 71 75",
+    "name": "Utile",
+    "operator": "Système U",
+    "shop": "supermarket",
+    "source": "ticket de caisss (9/2012)",
+    "id": "node/700239853"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.749548,
+      45.1853898
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/735107958",
+  "properties": {
+    "name": "Carrefour Market",
+    "operator": "Carrefour",
+    "shop": "supermarket",
+    "id": "node/735107958"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.5101994,
+      45.2945446
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/764347231",
+  "properties": {
+    "name": "Lidl",
+    "operator": "Lidl",
+    "shop": "supermarket",
+    "id": "node/764347231"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.5864062,
+      45.365972
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/858388918",
+  "properties": {
+    "name": "Simply Market",
+    "operator": "Simply Market",
+    "shop": "supermarket",
+    "wheelchair": "yes",
+    "id": "node/858388918"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.719765,
+      45.1809167
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/945170143",
+  "properties": {
+    "name": "Leader Price",
+    "operator": "Leader Price",
+    "shop": "supermarket",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour :2010",
+    "id": "node/945170143"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7091624,
+      45.1517566
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/958192848",
+  "properties": {
+    "name": "Petit Casino",
+    "operator": "Casino",
+    "shop": "supermarket",
+    "id": "node/958192848"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7381162,
+      45.1984845
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/959630000",
+  "properties": {
+    "name": "Lidl",
+    "operator": "Lidl",
+    "shop": "supermarket",
+    "id": "node/959630000"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7616756,
+      45.18696
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/960512792",
+  "properties": {
+    "name": "Monoprix",
+    "operator": "Groupe Casino",
+    "shop": "supermarket",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
+    "wheelchair": "yes",
+    "wikipedia": "fr:Monoprix (France)",
+    "id": "node/960512792"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.721902,
+      45.1834162
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/1005289804",
+  "properties": {
+    "name": "Biocoop",
+    "operator": "Biocoop",
+    "organic": "only",
+    "shop": "supermarket",
+    "id": "node/1005289804"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.5900178,
+      45.3635466
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/1092393062",
+  "properties": {
+    "name": "Petit casino",
+    "operator": "Casino",
+    "shop": "supermarket",
+    "id": "node/1092393062"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      6.0682959,
+      45.0918078
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/1092393101",
+  "properties": {
+    "name": "Spar",
+    "operator": "Spar",
+    "shop": "supermarket",
+    "id": "node/1092393101"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      6.0678123,
+      45.0919785
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/1142119320",
+  "properties": {
+    "name": "Picard",
+    "shop": "supermarket",
+    "source": "survey",
+    "id": "node/1142119320"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7319582,
+      45.1821751
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/1160559561",
+  "properties": {
+    "name": "Casino",
+    "shop": "supermarket",
+    "id": "node/1160559561"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.8315133,
+      45.2468563
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/1307885916",
+  "properties": {
+    "name": "Marché Franprix",
+    "operator": "Franprix",
+    "shop": "supermarket",
+    "wheelchair": "yes",
+    "id": "node/1307885916"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7137905,
+      45.1858021
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/1371135262",
+  "properties": {
+    "name": "Spar",
+    "operator": "Spar",
+    "shop": "supermarket",
+    "id": "node/1371135262"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7243435,
+      45.1474347
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/1375616093",
+  "properties": {
+    "name": "Lidl",
+    "operator": "Lidl",
+    "shop": "supermarket",
+    "id": "node/1375616093"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7682842,
+      45.0777423
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/1472174701",
+  "properties": {
+    "addr:city": "Grenoble",
+    "addr:street": "Avenue Alsace Lorraine",
+    "contact:phone": "+33 4 76 50 00 22",
+    "name": "Casino Shop",
+    "opening_hours": "Mo-Sa 07:00-21:15",
+    "operator": "Casino",
+    "shop": "supermarket",
+    "source": "ticket de caisss (9/2012)",
+    "id": "node/1472174701"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7171139,
+      45.1900412
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/1627099856",
+  "properties": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "31",
+    "addr:postcode": "38000",
+    "addr:street": "Cours Jean Jaurès",
+    "name": "DIA",
+    "operator": "DIA",
+    "shop": "supermarket",
+    "source": "survey",
+    "website": "http://www.dia.fr/trouver-un-magasin/detail-de-magasin/magasin/dia-grenoble-jean-jaures/",
+    "id": "node/1627099856"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7192223,
+      45.1875603
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/1697821864",
+  "properties": {
+    "addr:city": "Grenoble",
+    "addr:postcode": "38000",
+    "addr:street": "Cours Jean Jaurès",
+    "contact:phone": "+33 4 76 12 91 44",
+    "contact:website": "www.carrefour.fr",
+    "name": "Carrefour City",
+    "opening_hours": "Mo-Sa 07:00-22:00; Su 09:00-13:00",
+    "operator": "Carrefour",
+    "shop": "supermarket",
+    "wheelchair": "yes",
+    "id": "node/1697821864"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7195572,
+      45.1905239
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/1791435689",
+  "properties": {
+    "name": "Intermarché",
+    "operator": "Groupement des Mousquetaires",
+    "shop": "supermarket",
+    "id": "node/1791435689"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.3339157,
+      45.1571362
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/1831969760",
+  "properties": {
+    "name": "Casino",
+    "operator": "Casino",
+    "shop": "supermarket",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2012",
+    "wheelchair": "yes",
+    "id": "node/1831969760"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7117482,
+      45.1804048
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/1920271584",
+  "properties": {
+    "name": "Netto",
+    "operator": "Netto",
+    "shop": "supermarket",
+    "id": "node/1920271584"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.5766249,
+      45.125623
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/1935746864",
+  "properties": {
+    "name": "Simply Market",
+    "operator": "Simply Market",
+    "shop": "supermarket",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2012",
+    "wheelchair": "yes",
+    "id": "node/1935746864"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7264415,
+      45.1794643
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/1975373470",
+  "properties": {
+    "opening_hours": "Mo-Sa 06:30-12:30,15:30-19:00; We off; Su 06:30-12:30",
+    "shop": "supermarket",
+    "source": "local_survey",
+    "wheelchair": "no",
+    "id": "node/1975373470"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.6694307,
+      45.0552006
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/1976582060",
+  "properties": {
+    "name": "Le Sherpa",
+    "operator": "Sherpa",
+    "shop": "supermarket",
+    "id": "node/1976582060"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      6.0768289,
+      45.0550727
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/1976582074",
+  "properties": {
+    "name": "Huit à huit",
+    "operator": "8 à Huit",
+    "shop": "supermarket",
+    "id": "node/1976582074"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      6.0778536,
+      45.056183
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/1993647374",
+  "properties": {
+    "name": "Casino",
+    "opening_hours": "Mo-Sa 08:30-19:30",
+    "operator": "Casino",
+    "shop": "supermarket",
+    "id": "node/1993647374"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.692478,
+      45.1763265
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/2065295441",
+  "properties": {
+    "name": "Satoriz",
+    "shop": "supermarket",
+    "id": "node/2065295441"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.8885344,
+      45.2765937
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/2068438105",
+  "properties": {
+    "name": "Carrefour Market",
+    "operator": "Carrefour",
+    "shop": "supermarket",
+    "id": "node/2068438105"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.9128493,
+      45.2646686
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/2110613968",
+  "properties": {
+    "name": "La Vie Claire",
+    "operator": "La Vie Claire",
+    "shop": "supermarket",
+    "id": "node/2110613968"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      6.0080462,
+      45.4359701
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/2160185815",
+  "properties": {
+    "name": "Petit Casino",
+    "opening_hours": "Tu-Sa 08:00-13:00,15:30-19:30; Su 08:30-12:30",
+    "operator": "Casino",
+    "shop": "supermarket",
+    "id": "node/2160185815"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.6970309,
+      45.1732141
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/2203224919",
+  "properties": {
+    "name": "Petit Casino",
+    "operator": "Casino",
+    "shop": "supermarket",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2013",
+    "id": "node/2203224919"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7071238,
+      45.1886611
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/2210539506",
+  "properties": {
+    "name": "Max Market Italiano",
+    "shop": "supermarket",
+    "id": "node/2210539506"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.6936039,
+      45.1789608
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/2321783117",
+  "properties": {
+    "cuisine": "international",
+    "name": "Orange",
+    "shop": "supermarket",
+    "source": "survey",
+    "id": "node/2321783117"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7275597,
+      45.190697
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/2329989664",
+  "properties": {
+    "name": "Petit Casino",
+    "operator": "Casino",
+    "shop": "supermarket",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre ; mise à jour : 2010",
+    "id": "node/2329989664"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.5509242,
+      45.070162
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/2361487680",
+  "properties": {
+    "name": "SPAR",
+    "operator": "Spar",
+    "shop": "supermarket",
+    "source": "survey",
+    "id": "node/2361487680"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7219975,
+      45.1911708
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/2387382723",
+  "properties": {
+    "name": "Petit Casino",
+    "operator": "Casino",
+    "shop": "supermarket",
+    "source": "survey",
+    "id": "node/2387382723"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7269075,
+      45.1912839
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/2388638747",
+  "properties": {
+    "addr:city": "Grenoble",
+    "addr:housenumber": "17-19",
+    "addr:postcode": "38000",
+    "addr:street": "Grande Rue",
+    "name": "Bio c' Bon",
+    "opening_hours": "Mo-Fr 10:00-20:00; Sa 09:00-20:00; Su 09:00-13:00",
+    "organic": "only",
+    "phone": "+33 4 76 54 10 55",
+    "shop": "supermarket",
+    "website": "http://bio-c-bon.eu/fr/nos_magasins/bio-c-bon-grenoble",
+    "id": "node/2388638747"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7285818,
+      45.1918388
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/2415879869",
+  "properties": {
+    "name": "Franprix",
+    "operator": "Franprix",
+    "shop": "supermarket",
+    "source": "survey",
+    "id": "node/2415879869"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7265755,
+      45.1889535
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/2434829218",
+  "properties": {
+    "shop": "supermarket",
+    "id": "node/2434829218"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.6566532,
+      45.072342
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/2434830735",
+  "properties": {
+    "name": "Intermarché",
+    "operator": "Groupement des Mousquetaires",
+    "shop": "supermarket",
+    "id": "node/2434830735"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.6818147,
+      45.0979134
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/2498359133",
+  "properties": {
+    "name": "Eissa Super Store",
+    "shop": "supermarket",
+    "source": "survey",
+    "id": "node/2498359133"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7303974,
+      45.1930018
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/2517415413",
+  "properties": {
+    "name": "Carrefour",
+    "shop": "supermarket",
+    "id": "node/2517415413"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7267529,
+      45.1579699
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/2520914303",
+  "properties": {
+    "name": "DALI Market",
+    "shop": "supermarket",
+    "source": "survey",
+    "id": "node/2520914303"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.731305,
+      45.1598732
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/2616081113",
+  "properties": {
+    "name": "Carrefour Express",
+    "shop": "supermarket",
+    "source": "survey",
+    "id": "node/2616081113"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7312026,
+      45.1867305
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/2674603233",
+  "properties": {
+    "name": "Spar",
+    "shop": "supermarket",
+    "id": "node/2674603233"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.5548928,
+      44.9009185
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/2685658734",
+  "properties": {
+    "name": "Proxi",
+    "shop": "supermarket",
+    "id": "node/2685658734"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7536741,
+      45.2023041
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/2694851394",
+  "properties": {
+    "name": "Utile",
+    "shop": "supermarket",
+    "id": "node/2694851394"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7305595,
+      45.0872729
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/2756579020",
+  "properties": {
+    "name": "Picard",
+    "shop": "supermarket",
+    "source": "survey",
+    "id": "node/2756579020"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7293027,
+      45.1879358
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/2857595089",
+  "properties": {
+    "name": "Picard",
+    "shop": "supermarket",
+    "source": "survey",
+    "wheelchair": "yes",
+    "id": "node/2857595089"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7175221,
+      45.1849158
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/3048042861",
+  "properties": {
+    "name": "Bliss",
+    "shop": "supermarket",
+    "source": "survey",
+    "id": "node/3048042861"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7307528,
+      45.1917946
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/3048042925",
+  "properties": {
+    "name": "Petit Casino",
+    "shop": "supermarket",
+    "source": "survey",
+    "id": "node/3048042925"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.730333,
+      45.1923188
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/3054572616",
+  "properties": {
+    "shop": "supermarket",
+    "id": "node/3054572616"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.709448,
+      45.1359791
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/3071872639",
+  "properties": {
+    "name": "Leclerc Drive",
+    "shop": "supermarket",
+    "id": "node/3071872639"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.6925157,
+      45.1451638
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/3103515823",
+  "properties": {
+    "name": "Carrefour Saint-Égrève",
+    "shop": "supermarket",
+    "id": "node/3103515823"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.6635174,
+      45.2393406
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/3242172215",
+  "properties": {
+    "name": "Leader Price",
+    "opening_hours": "Mo-Sa 08:00-19:30; Su 08:00-12:30",
+    "operator": "Leader Price",
+    "shop": "supermarket",
+    "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2014",
+    "id": "node/3242172215"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.6714322,
+      45.1972033
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/3275399212",
+  "properties": {
+    "addr:city": "Chamrousse",
+    "addr:housenumber": "178",
+    "addr:postcode": "38410",
+    "addr:street": "Avenue Henri Duhamel",
+    "name": "Casino - Le recoin",
+    "phone": "+33 4 76 51 00 95",
+    "shop": "supermarket",
+    "id": "node/3275399212"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.8774636,
+      45.1265786
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/3344808391",
+  "properties": {
+    "name": "Leader Price",
+    "shop": "supermarket",
+    "id": "node/3344808391"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.6701156,
+      45.2383476
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/3344841823",
+  "properties": {
+    "name": "Carrefour Grenoble Meylan",
+    "shop": "supermarket",
+    "id": "node/3344841823"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7643757,
+      45.2031704
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/3509058223",
+  "properties": {
+    "addr:city": "Allemont",
+    "addr:housenumber": "225",
+    "addr:postcode": "38114",
+    "addr:street": "Route de Savoie",
+    "name": "SPAR",
+    "shop": "supermarket",
+    "id": "node/3509058223"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      6.0319538,
+      45.1255703
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/3609391193",
+  "properties": {
+    "shop": "supermarket",
+    "id": "node/3609391193"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.5974119,
+      45.3538583
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/3729515292",
+  "properties": {
+    "name": "Alimentation Generale",
+    "shop": "supermarket",
+    "id": "node/3729515292"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.3448767,
+      45.0610351
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/3763724786",
+  "properties": {
+    "name": "Alimentation Générale Primeur",
+    "shop": "supermarket",
+    "id": "node/3763724786"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7358372,
+      45.1786129
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/3773961121",
+  "properties": {
+    "name": "SPAR",
+    "shop": "supermarket",
+    "source": "survey",
+    "id": "node/3773961121"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.6750626,
+      45.235932
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/3844346134",
+  "properties": {
+    "name": "Biocoop",
+    "organic": "only",
+    "shop": "supermarket",
+    "id": "node/3844346134"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7398013,
+      45.170403
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/3874481257",
+  "properties": {
+    "name": "Dia",
+    "shop": "supermarket",
+    "id": "node/3874481257"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.6940435,
+      45.1901677
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/3874502283",
+  "properties": {
+    "operator": "Casino",
+    "shop": "supermarket",
+    "id": "node/3874502283"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7087159,
+      45.1909598
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/3910936933",
+  "properties": {
+    "name": "Carrefour City",
+    "operator": "Carrefour",
+    "shop": "supermarket",
+    "id": "node/3910936933"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.7314109,
+      45.1817376
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "id": "node/3932984614",
+  "properties": {
+    "name": "Super U",
+    "shop": "supermarket",
+    "id": "node/3932984614"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      5.5919616,
+      45.3641976
+    ]
+  }
+}
+]
