@@ -12,7 +12,7 @@ To install the project, you need to have bower, node, npm, mongoDB, ruby (for co
 #### Building the angular client
 Run `bower install` and `npm install` to install the dependencies.
 
-This will build the app and create a dist folder.
+Build the app to create a dist folder containing everything.
 ```shell
 grunt build
 ```
@@ -33,7 +33,7 @@ Then run the get_local_data script to populate the db. Data are fetched from the
 
 The server will serve the html AND will be used as a REST API.
 
-To install eve run:
+To install Eve (python server) run:
 ```shell
 pip install eve
 ```
