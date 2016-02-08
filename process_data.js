@@ -37,35 +37,13 @@ MongoClient.connect(url, function(err, db) {
                 });
             });
 
-
-/*
-            db.collection('grenoble').remove({"id" : {$ne: "relation/80348"}}, function(err, doc) {
-                if(err) throw err;
-            });
-
-            db.collection('grenoble').findOne({"id" : "relation/80348"}, function(err, grenoble) {
-                    if(err) throw err;
-
-                    if(grenoble !== null){
-                        db.collection('grenoble').update({"id" : "relation/80348"}, {"geometry": grenoble.geometry}, function(err, newGrenoble) {
-                            if(err) throw err;
-                        });
-                    }
-            });
-
-*/
-//.aggregate([{ $unwind: "$features" },{$group: {"_id": "id", "geom": { $first: "$features" }}}],function(err, doc){
-
 db.collection("grenoble_all").findOne({"id" : "relation/80348"}, function(err, doc){
-    if(err) throw err;
-    db.createCollection('grenoble', function(err, collection) {
     if(err) throw err;
     db.collection("grenoble").remove({"id" : "relation/80348"},  function(err, docu){
         if(err) throw err;
         db.collection("grenoble").update({"id" : "relation/80348"}, doc, {upsert: true},  function(err, docu){
-        if(err) throw err;
-    });
-    });
+            if(err) throw err;
+        });
     
     });
 });
