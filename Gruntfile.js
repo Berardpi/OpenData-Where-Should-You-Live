@@ -412,10 +412,19 @@ module.exports = function (grunt) {
           src: [
             '*.{ico,png,txt}',
             '*.html',
+            'views/*.html',
             'images/{,*/}*.{webp}',
             'styles/fonts/{,*/}*.*'
           ]
         }, {
+          expand: true,
+          flatten: true,
+          cwd: '.',
+          dest: '<%= yeoman.dist %>/styles/images',
+          src: ['bower_components/Leaflet.awesome-markers/dist/images/*.png',
+          'bower_components/leaflet/dist/images/*.png']
+        },
+        {
           expand: true,
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
