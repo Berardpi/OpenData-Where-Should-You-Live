@@ -1,4 +1,3 @@
-"features": [
 { "type": "Feature", "id": 1, "properties": { "id_section": 834.000000, "nom_commune": "FONTANIL-CORNILLON", "longueur_section_m": 83.207500, "type_amenagement": "Piste cyclable", "date_realisation": 2004, "url": "" }, "geometry": { "type": "LineString", "coordinates": [ [ 5.661927, 45.254582 ], [ 5.661495, 45.255265 ] ] } }
 ,
 { "type": "Feature", "id": 2, "properties": { "id_section": 833.000000, "nom_commune": "FONTANIL-CORNILLON", "longueur_section_m": 115.176000, "type_amenagement": "Piste cyclable", "date_realisation": 2004, "url": "" }, "geometry": { "type": "LineString", "coordinates": [ [ 5.661927, 45.254582 ], [ 5.662086, 45.254431 ], [ 5.662567, 45.253654 ] ] } }
@@ -2483,4 +2482,3 @@
 ,
 { "type": "Feature", "id": 1242, "properties": { "id_section": 1292.000000, "nom_commune": "GRENOBLE", "longueur_section_m": 34.035984, "type_amenagement": "Bande cyclable", "date_realisation": 2009, "url": "" }, "geometry": { "type": "LineString", "coordinates": [ [ 5.723079, 45.187750 ], [ 5.723511, 45.187729 ] ] } }
 
-]
